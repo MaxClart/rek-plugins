@@ -1,0 +1,93 @@
+# Generates the HTML pages with a shared header/footer. Run: python3 build.py
+import html
+BRAND="ClearForge Plugins"
+ADDR="EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN"
+ISSUES="https://github.com/MaxClart/Clearcrates/issues"
+def page(path,title,desc,body):
+    r="../" if "/" in path else ""
+    return f'''<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{desc}">
+<link rel="stylesheet" href="{r}css/style.css">
+<script src="{r}js/main.js" defer></script>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="{r}index.html"><span></span>{BRAND}</a>
+<nav><a href="{r}index.html#plugins">Plugins</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a></nav></div></header>
+<main>
+{body}
+</main>
+<footer><div class="wrap"><p>&copy; 2026 {BRAND}. Made for Minecraft server owners and admins.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
+'''
+def buy(r):
+    return f'''<section id="buy"><div class="wrap"><h2>Buy ClearCrates &mdash; $9.99</h2>
+<div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
+<p>Send the equivalent of <strong>$9.99</strong> in SOL or USDC on the Solana network to:</p>
+<code class="addr">{ADDR}</code>
+<p><button class="btn alt" type="button" data-copy>Copy address</button> <a class="btn alt" href="solana:{ADDR}">Open in wallet</a></p>
+<img class="qr" src="{r}assets/solana-qr.png" alt="QR code for the Solana address" width="180" height="180">
+<p class="muted">Only send on the Solana network. Transfers can't be reversed, so double-check the address.</p></div>
+<div class="card"><h3>Get your download</h3><ol>
+<li>Send the payment.</li>
+<li>Copy your transaction ID (signature) from your wallet.</li>
+<li><a href="{ISSUES}">Open a GitHub issue</a> with the transaction ID and your server name.</li>
+<li>You'll be sent the ClearCrates jar once the payment is confirmed.</li></ol>
+<h3>Pay by card</h3><p><a class="btn" href="#buy" data-card-checkout aria-disabled="true">Card checkout coming soon</a></p></div></div></div></section>'''
+feat=["Spin animation (length and sound configurable, or turn it off)","Right-click a key to open, left-click to preview","In-game editor: drag items in, close to save","Item and command rewards, with a %player% placeholder","MiniMessage colours in names and messages","Full inventories: rewards drop at the player's feet, never lost","Tab completion on every command"]
+cfg=html.escape(open("/workspace/products/clearcrates/src/main/resources/config.yml").read())
+index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server owners</h1>
+<p>Lightweight, honest Paper plugins built for people who run servers. Clear configs, no bloat, real support.</p>
+<p><a class="btn" href="#plugins">Browse plugins</a> <a class="btn alt" href="faq.html">Server owner FAQ</a></p></div></div>
+<section id="plugins"><div class="wrap"><h2>Plugin catalogue</h2><div class="grid">
+<div class="card"><img src="assets/clearcrates-cover.png" alt="ClearCrates cover" width="1200" height="600">
+<h3>ClearCrates</h3><p>Transparent crates for Paper 1.21: exact drop chances shown, fixed preview slots and lightweight animations. No required dependencies.</p>
+<p class="price">$9.99</p><p><a class="btn" href="plugins/clearcrates.html">View plugin</a> <a class="btn alt" href="plugins/clearcrates.html#buy">Buy</a></p></div>
+</div></div></section>
+<section id="soon"><div class="wrap"><h2>Coming soon</h2><div class="grid">
+<div class="card soon"><p>More server plugins are in the works.<br>Got a request? <a href="{ISSUES}">Tell us what your server needs</a>.</p></div>
+<div class="card soon"><p>Next plugin under development&hellip;</p></div></div></div></section>'''
+fl="".join(f"<li>{html.escape(f)}</li>" for f in feat)
+cc=f'''<div class="hero"><div class="wrap"><h1>ClearCrates</h1><p>Crates your players can trust. Every reward shows its exact drop chance, items always sit where you put them, and openings won't lag your server.</p>
+<p class="price">$9.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearcrates-cover.png" alt="ClearCrates cover" width="1200" height="600">
+<h2>Why ClearCrates</h2><ul><li><strong>Chances shown:</strong> the preview lists each reward's real percentage, worked out from your weights.</li>
+<li><strong>Fixed slots:</strong> you choose every slot, nothing gets shuffled at random.</li>
+<li><strong>Lightweight:</strong> one small scheduled task per opening, with no packet tricks.</li></ul>
+<h2>Features</h2><ul>{fl}</ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/crate list</code>, <code>/crate preview &lt;crate&gt;</code></td><td><code>clearcrates.use</code> (everyone by default)</td></tr>
+<tr><td><code>/crate give &lt;player&gt; &lt;crate&gt; [amount]</code></td><td><code>clearcrates.admin</code> (ops by default)</td></tr>
+<tr><td><code>/crate edit &lt;crate&gt;</code>, <code>/crate setchance &lt;crate&gt; &lt;slot&gt; &lt;chance&gt;</code></td><td><code>clearcrates.admin</code></td></tr>
+<tr><td><code>/crate reload</code></td><td><code>clearcrates.admin</code></td></tr></table></div>
+<h2>Optional hooks</h2><p>PlaceholderAPI (<code>%clearcrates_keys_&lt;crate&gt;%</code>), ItemsAdder and Nexo items. None are required.</p>
+<h2>Example config</h2><p class="muted">Chances are weights, so they don't need to add up to 100.</p><pre><code>{cfg}</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)</li><li>Java 21</li><li>Folia is not supported yet</li></ul>
+<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearCrates-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearCrates/config.yml</code> is created.</li><li>Edit the config or use <code>/crate edit &lt;crate&gt;</code> in game, then run <code>/crate reload</code>.</li><li>Give keys with <code>/crate give &lt;player&gt; &lt;crate&gt; [amount]</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="{ISSUES}">ClearCrates issues on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+{buy("../")}'''
+faq=f'''<section><div class="wrap"><h1>FAQ</h1>
+<h2>Refunds</h2><p>Plugins are digital goods, so all sales are normally final once the file has been sent. If something doesn't work on your server, open an issue first and we'll help you fix it. If we genuinely can't get it working on a supported setup, get in touch and we'll sort out a fair solution.</p>
+<h2>Server owner FAQ</h2>
+<h3>Which server software is supported?</h3><p>ClearCrates runs on Paper 1.21 (tested on 1.21.4) with Java 21. Folia isn't supported yet. Spigot and Bukkit aren't tested.</p>
+<h3>Does it need other plugins?</h3><p>No. PlaceholderAPI, ItemsAdder and Nexo are optional hooks.</p>
+<h3>Can I use it on more than one server?</h3><p>One purchase covers one server network (e.g. a proxy with its backend servers). Please don't redistribute or resell it.</p>
+<h3>How do I pay?</h3><p>Right now with SOL or USDC on Solana. Card checkout is coming soon. See the <a href="plugins/clearcrates.html#buy">buy section</a>.</p>
+<h3>How fast do I get the plugin?</h3><p>Once you send your transaction ID and the payment is confirmed, the jar is sent to you by hand, so it isn't instant.</p>
+<h3>Where do I report bugs?</h3><p><a href="{ISSUES}">GitHub issues</a>.</p></div></section>'''
+terms=f'''<section><div class="wrap"><h1>Terms</h1>
+<ul><li>Each purchase gives one licence for one server network. You may not redistribute, resell or reupload the plugin.</li>
+<li>Plugins are digital goods. See the <a href="faq.html">refund policy</a>.</li>
+<li>Crypto payments must be sent on the Solana network to the address shown. Payments sent to the wrong network or address can't be recovered.</li>
+<li>Software is provided as is. Always back up your server before installing plugins.</li>
+<li>{BRAND} isn't affiliated with Mojang or Microsoft. Minecraft is a trademark of its respective owners.</li></ul></div></section>'''
+for p,t,d,b in [("index.html",f"{BRAND} | Plugins for Minecraft server owners","Paper plugins for Minecraft server owners and admins.",index),
+ ("plugins/clearcrates.html",f"ClearCrates | {BRAND}","ClearCrates: transparent crates for Paper 1.21.",cc),
+ ("faq.html",f"FAQ | {BRAND}","Refunds and server owner FAQ.",faq),("terms.html",f"Terms | {BRAND}","Licence and terms.",terms)]:
+    open(p,"w").write(page(p,t,d,b))
