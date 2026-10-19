@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearChat | ClearForge Plugins</title>
+<meta name="description" content="ClearChat: A word filter that sees through leetspeak and spacing, anti-spam, caps and link blocking, @mentions with a sound, and chat clear/mute. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearChat</h1><p>Clean chat without the fuss. ClearChat works alongside your chat format plugins instead of replacing them.</p>
+<p class="price">$7.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearchat.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearchat-cover.png" alt="ClearChat cover" width="1200" height="600">
+<h2>Why ClearChat</h2><ul><li><strong>Smart filter:</strong> catches sh1t and s h i t without joining normal words together, so "this hit" is left alone.</li><li><strong>Anti-spam:</strong> message cooldown, duplicate block, caps limit and link/IP blocking with a whitelist.</li><li><strong>Plays nicely:</strong> it only changes message text, so format plugins such as ClearTags keep working.</li></ul>
+<h2>Features</h2><ul><li>Censor with *** or block the message</li><li>Caps over a set percentage made lower case (or blocked)</li><li>Link and IP blocking with a domain whitelist</li><li>@mentions highlight the name and play a sound to that player</li><li>/chat clear, /chat mute (global) and /chat reload</li><li>Bypass permissions for each check (ops have them by default)</li><li>Optional chat format, off by default and skipped when ClearTags is installed</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/chat clear</code>, <code>/chat mute</code>, <code>/chat reload</code></td><td><code>clearchat.admin</code> (ops by default)</td></tr><tr><td>Bypass checks</td><td><code>clearchat.bypass.filter</code>, <code>.cooldown</code>, <code>.duplicate</code>, <code>.caps</code>, <code>.links</code>, <code>.mute</code>, <code>.clear</code>, or <code>clearchat.bypass.*</code> (ops by default)</td></tr></table></div>
+<h2>Dependencies</h2><p>None.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with an op bot and a non-op bot, with ClearTags installed: leetspeak and spaced-out words were censored while normal text went through, the cooldown and duplicate block worked, all-caps was made lower case, links and IPs were blocked while a whitelisted link went through, mentions highlighted the name with a sound, /chat mute and /chat clear worked, the op bypassed the checks, and ClearTags&#x27; format still applied. Block mode for the filter and caps, and ClearChat&#x27;s own optional chat format, were not bot-tested.</p>
+<h2>Example config</h2><pre><code># ClearChat. All text is MiniMessage. Ops bypass everything by default (see plugin.yml permissions).
+prefix: &quot;&lt;dark_gray&gt;[&lt;gold&gt;Chat&lt;/gold&gt;]&lt;/dark_gray&gt; &quot;
+filter:
+  enabled: true
+  # censor = replace the word with *, block = stop the whole message.
+  mode: censor
+  censor-char: &quot;*&quot;
+  # Match through leetspeak (sh1t, $hit) and spacing/punctuation (s h i t, s.h.i.t).
+  normalise: true
+  words: [fuck, shit, bitch, cunt, bastard, dick, wanker, twat]
+  blocked-message: &quot;&lt;red&gt;Please keep chat friendly.&quot;
+anti-spam:
+  # Seconds between messages (0 = off).
+  cooldown: 2
+  cooldown-message: &quot;&lt;red&gt;Slow down! Wait &lt;time&gt;s before chatting again.&quot;
+  # Block sending the same message again within this many seconds (0 = off).
+  duplicate-seconds: 30
+  duplicate-message: &quot;&lt;red&gt;Please don&#x27;t repeat the same message.&quot;
+caps:
+  enabled: true
+  # Only check messages with at least this many letters.
+  min-letters: 6
+  # Max percentage of capital letters.
+  max-percent: 60
+  # lower = make the message lower case, block = stop it.
+  mode: lower
+  blocked-message: &quot;&lt;red&gt;Please don&#x27;t use so many capitals.&quot;
+links:
+  enabled: true
+  block-ips: true
+  # Domains that are always allowed (and their subdomains).
+  whitelist: [youtube.com, discord.gg]
+  blocked-message: &quot;&lt;red&gt;Links aren&#x27;t allowed in chat.&quot;
+mentions:
+  enabled: true
+  # Highlight a player&#x27;s name (with or without @) in chat.
+  highlight: &quot;&lt;yellow&gt;@&lt;name&gt;&lt;/yellow&gt;&quot;
+  # Sound played to the mentioned player (any Minecraft sound key). Leave empty for none.
+  sound: &quot;entity.experience_orb.pickup&quot;
+  volume: 1.0
+  pitch: 1.0
+# Chat format. Off by default so it never fights other chat plugins such as ClearTags.
+format:
+  enabled: false
+  # Even when enabled, do nothing if ClearTags is installed.
+  skip-if-cleartags: true
+  text: &quot;&lt;gray&gt;&lt;name&gt;&lt;/gray&gt;&lt;dark_gray&gt; » &lt;/dark_gray&gt;&lt;white&gt;&lt;message&gt;&quot;
+messages:
+  muted: &quot;&lt;red&gt;Chat is muted right now.&quot;
+  mute-on: &quot;&lt;red&gt;Chat has been muted by &lt;player&gt;.&quot;
+  mute-off: &quot;&lt;green&gt;Chat has been unmuted by &lt;player&gt;.&quot;
+  cleared: &quot;&lt;gray&gt;Chat was cleared by &lt;player&gt;.&quot;
+  reloaded: &quot;&lt;green&gt;ClearChat reloaded.&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearchat.html">ClearChat setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearChat-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearChat/config.yml</code> is created.</li><li>Edit filter words, cooldown, caps limit, link whitelist and mention sound in the config, then run <code>/chat reload</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearChat &mdash; $7.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearChat download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearchat" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

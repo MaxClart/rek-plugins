@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearSpawners | ClearForge Plugins</title>
+<meta name="description" content="ClearSpawners: Stackable virtual spawners: drops and XP go straight into a storage menu instead of spawning mobs, with collect, sell all and silk-touch pickup. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearSpawners</h1><p>No mob lag, just loot. Spawners placed by players stop spawning mobs and fill a storage menu instead.</p>
+<p class="price">$9.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearspawners.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearspawners-cover.png" alt="ClearSpawners cover" width="1200" height="600">
+<h2>Why ClearSpawners</h2><ul><li><strong>No mob lag:</strong> drops and XP are generated straight into storage, so no mobs spawn.</li><li><strong>Stacking:</strong> right-click a spawner with another of the same type, or place one onto it, up to a max you set.</li><li><strong>Sell all:</strong> pays through Vault with a price per item. Without Vault the button is greyed out.</li></ul>
+<h2>Features</h2><ul><li>Per-mob drop table, interval and XP in config.yml, multiplied by stack size</li><li>Ships with pig, cow, chicken, zombie, skeleton, spider, creeper, blaze and iron golem</li><li>Storage menu: see stored items and their value, then Collect items, Collect XP or Sell all</li><li>Silk touch pickup (or clearspawners.pickup) gives back a spawner item that keeps its stack</li><li>Only generates when a player is nearby (configurable), with storage caps per item and for XP</li><li>Explosion protection (configurable)</li><li>Data saved in spawners.yml and kept across restarts</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td>Open storage, stack spawners</td><td><code>clearspawners.use</code> (everyone by default)</td></tr><tr><td>Sell all</td><td><code>clearspawners.sell</code> (everyone by default)</td></tr><tr><td>Pick up without silk touch</td><td><code>clearspawners.pickup</code> (ops by default)</td></tr><tr><td><code>/spawners give &lt;player&gt; &lt;mob&gt; [amount] [stack]</code>, <code>/spawners reload</code></td><td><code>clearspawners.admin</code> (ops by default)</td></tr></table></div>
+<h2>Dependencies</h2><p>None to run. Vault and an economy plugin (e.g. EssentialsX) are needed for Sell all.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with a bot, Vault 1.7.3 and EssentialsX 2.22.0: a pig spawner was stacked to 3 (by right-click and by placing onto it), drops and XP built up, Collect items and Collect XP worked, Sell all raised /balance from $0 to $60, silk touch gave back a stack-3 spawner that placed again as stack 3, and everything survived a restart with no pigs spawned. Pickup by permission without silk touch, breaking without silk touch, explosion protection and mob types other than pig were not bot-tested.</p>
+<h2>Example config</h2><pre><code># ClearSpawners. Spawners placed by players (or given with /spawners give) make virtual drops
+# instead of mobs. Right-click a spawner to open its storage. Data is kept in spawners.yml.
+max-stack: 10
+# Only generate drops when a player is within this many blocks (0 = always, while the chunk is loaded).
+player-range: 16
+# Max of each item a single spawner stores. Generation of that item pauses when full.
+max-storage-per-item: 2304
+max-xp-storage: 10000
+# Pickup: silk touch tool keeps the spawner (and its stack). clearspawners.pickup works without silk touch.
+silk-touch-pickup: true
+# Drop stored items on the ground when a spawner is picked up or broken (false = they are lost).
+drop-storage-on-break: true
+# Protect spawners from explosions.
+explosion-proof: true
+# Drop tables. interval = seconds between drops. Amounts are per spawner and multiplied by stack size.
+# drops: MATERIAL: &quot;min-max&quot; (or a single number). xp = XP per interval.
+mobs:
+  PIG:      {interval: 20, xp: 3, drops: {PORKCHOP: &quot;1-3&quot;}}
+  COW:      {interval: 20, xp: 3, drops: {BEEF: &quot;1-3&quot;, LEATHER: &quot;0-2&quot;}}
+  CHICKEN:  {interval: 20, xp: 3, drops: {CHICKEN: &quot;1&quot;, FEATHER: &quot;0-2&quot;}}
+  ZOMBIE:   {interval: 20, xp: 5, drops: {ROTTEN_FLESH: &quot;0-2&quot;}}
+  SKELETON: {interval: 20, xp: 5, drops: {BONE: &quot;0-2&quot;, ARROW: &quot;0-2&quot;}}
+  SPIDER:   {interval: 20, xp: 5, drops: {STRING: &quot;0-2&quot;, SPIDER_EYE: &quot;0-1&quot;}}
+  CREEPER:  {interval: 20, xp: 5, drops: {GUNPOWDER: &quot;0-2&quot;}}
+  BLAZE:    {interval: 25, xp: 10, drops: {BLAZE_ROD: &quot;0-1&quot;}}
+  IRON_GOLEM: {interval: 40, xp: 0, drops: {IRON_INGOT: &quot;3-5&quot;, POPPY: &quot;0-2&quot;}}
+# Sell prices per item for &quot;Sell all&quot; (needs Vault and an economy plugin). Items not listed can&#x27;t be sold.
+prices:
+  PORKCHOP: 2.0
+  BEEF: 2.0
+  LEATHER: 3.0
+  CHICKEN: 1.5
+  FEATHER: 0.5
+  ROTTEN_FLESH: 0.5
+  BONE: 1.0
+  ARROW: 0.5
+  STRING: 1.0
+  SPIDER_EYE: 2.0
+  GUNPOWDER: 3.0
+  BLAZE_ROD: 8.0
+  IRON_INGOT: 5.0
+  POPPY: 0.2
+messages:
+  prefix: &quot;&lt;dark_gray&gt;[&lt;green&gt;Spawners&lt;/green&gt;]&lt;/dark_gray&gt; &quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li><li>Vault and an economy plugin (only for Sell all)</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearspawners.html">ClearSpawners setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearSpawners-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearSpawners/config.yml</code> is created.</li><li>For Sell all, install Vault and an economy plugin (e.g. EssentialsX).</li><li>Edit max stack, drop tables, intervals, XP and prices in the config, then run <code>/spawners reload</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearSpawners &mdash; $9.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearSpawners download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearspawners" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
