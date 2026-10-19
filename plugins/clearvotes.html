@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearVotes | ClearForge Plugins</title>
+<meta name="description" content="ClearVotes: Vote rewards with milestone bonuses, daily streaks and an offline queue. For Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="../index.html"><span></span>ClearForge Plugins</a>
+<nav><a href="../index.html#plugins">Plugins</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a></nav></div></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearVotes</h1><p>Turn votes into players. ClearVotes hooks into NuVotifier and runs any commands you like when someone votes, with milestone and daily streak bonuses.</p>
+<p class="price">$6.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearvotes-cover.png" alt="ClearVotes cover" width="1200" height="600">
+<h2>Why ClearVotes</h2><ul><li><strong>Milestones:</strong> extra rewards at a player's 10th, 50th (or any) vote.</li><li><strong>Daily streaks:</strong> bonus rewards for voting on consecutive days.</li><li><strong>Offline queue:</strong> vote while offline and the rewards arrive on your next join.</li></ul>
+<h2>Features</h2><ul><li>Any console commands per vote, with %player%</li><li>Broadcast message and clickable vote links on /vote, with the player&#x27;s total and streak</li><li>/votes top leaderboard</li><li>/votes test &lt;player&gt; to try rewards without a vote site</li><li>/votes reset and /votes reload</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>What it does</th></tr>
+<tr><td><code>/vote</code></td><td>Clickable vote links, plus your total and streak</td></tr><tr><td><code>/votes top</code></td><td>Vote leaderboard</td></tr><tr><td><code>/votes test &lt;player&gt;</code></td><td>Try rewards without a vote site</td></tr><tr><td><code>/votes reset</code>, <code>/votes reload</code></td><td>Reset votes, reload the config</td></tr></table></div>
+<h2>Dependencies</h2><p><a href="https://github.com/NuVotifier/NuVotifier">NuVotifier</a> (free) is needed to receive votes from vote sites. Without it, <code>/votes test</code> still works.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with bots using /votes test: rewards were given, /vote showed stats, an offline player&#x27;s rewards were delivered on join, and /votes top listed both voters. Live votes from a vote site were not tested yet.</p>
+<h2>Example config</h2><pre><code># ClearVotes. Receives votes from NuVotifier. Use /votes test &lt;player&gt; to try rewards without a vote site.
+links:
+  - &quot;&lt;aqua&gt;&lt;click:open_url:&#x27;https://example.com/vote1&#x27;&gt;Vote site 1&lt;/click&gt;&quot;
+  - &quot;&lt;aqua&gt;&lt;click:open_url:&#x27;https://example.com/vote2&#x27;&gt;Vote site 2&lt;/click&gt;&quot;
+broadcast: &quot;&lt;gold&gt;&lt;player&gt;&lt;/gold&gt; &lt;yellow&gt;voted on &lt;service&gt; and got a reward! /vote&quot;
+messages:
+  thanks: &quot;&lt;green&gt;Thanks for voting! You now have &lt;total&gt; votes.&quot;
+  queued: &quot;&lt;green&gt;You voted while offline. Here are your &lt;count&gt; reward(s)!&quot;
+# Commands run from console for every vote. %player% is replaced.
+rewards:
+  - &quot;give %player% diamond 1&quot;
+  - &quot;xp add %player% 100&quot;
+# Extra commands every Nth vote (by the player&#x27;s total).
+milestones:
+  10:
+    - &quot;give %player% diamond_block 1&quot;
+  50:
+    - &quot;give %player% netherite_ingot 1&quot;
+# Daily streak: voting on consecutive days adds a bonus on these streak days.
+streaks:
+  3:
+    - &quot;give %player% golden_apple 1&quot;
+  7:
+    - &quot;give %player% enchanted_golden_apple 1&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li><li>NuVotifier (free) to receive votes from sites</li></ul>
+<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearVotes-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearVotes/config.yml</code> is created.</li><li>Install NuVotifier and add your server to your vote sites.</li><li>Set your rewards, milestones, streaks and vote links in the config, then run <code>/votes reload</code>.</li><li>Try it with <code>/votes test &lt;player&gt;</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearVotes &mdash; $6.99</h2>
+<div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
+<p>Send the equivalent of <strong>$6.99</strong> in SOL or USDC on the Solana network to:</p>
+<code class="addr">EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN</code>
+<p><button class="btn alt" type="button" data-copy>Copy address</button> <a class="btn alt" href="solana:EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN">Open in wallet</a></p>
+<img class="qr" src="../assets/solana-qr.png" alt="QR code for the Solana address" width="180" height="180">
+<p class="muted">Only send on the Solana network. Transfers can't be reversed, so double-check the address.</p></div>
+<div class="card"><h3>Get your download</h3><ol>
+<li>Send the payment.</li>
+<li>Copy your transaction ID (signature) from your wallet.</li>
+<li><a href="https://github.com/MaxClart/Clearcrates/issues">Open a GitHub issue</a> with the transaction ID and your server name.</li>
+<li>You'll be sent the ClearVotes jar once the payment is confirmed.</li></ol>
+<h3>Pay by card</h3><p><a class="btn" href="#buy" data-card-checkout aria-disabled="true">Card checkout coming soon</a></p></div></div></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

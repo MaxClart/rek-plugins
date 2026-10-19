@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearTags | ClearForge Plugins</title>
+<meta name="description" content="ClearTags: Players pick a chat tag from a click menu. For Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="../index.html"><span></span>ClearForge Plugins</a>
+<nav><a href="../index.html#plugins">Plugins</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a></nav></div></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearTags</h1><p>Chat tags without the setup headache. Players type /tags, see every tag, and click to equip one. Tags they haven&#x27;t unlocked show as locked grey dye.</p>
+<p class="price">$5.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/cleartags-cover.png" alt="ClearTags cover" width="1200" height="600">
+<h2>Why ClearTags</h2><ul><li><strong>Click menu:</strong> unlocked tags show their icon, locked tags show as grey dye, and a barrier removes your tag.</li><li><strong>Unlock by permission:</strong> <code>cleartags.tag.&lt;id&gt;</code>, or <code>cleartags.tag.*</code> for all, so tags work with ranks, store packages or crates.</li><li><strong>No database:</strong> the equipped tag is saved on the player.</li></ul>
+<h2>Features</h2><ul><li>Tags use MiniMessage, so colours and gradients work</li><li>Custom chat format, e.g. &lt;tag&gt;&lt;name&gt;&lt;gray&gt;: &lt;/gray&gt;&lt;message&gt;</li><li>/tags &lt;tag&gt; and /tags clear for players</li><li>/tags set &lt;player&gt; &lt;tag|none&gt; and /tags reload for admins</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Who</th></tr>
+<tr><td><code>/tags</code>, <code>/tags &lt;tag&gt;</code>, <code>/tags clear</code></td><td>Players</td></tr><tr><td><code>/tags set &lt;player&gt; &lt;tag|none&gt;</code>, <code>/tags reload</code></td><td>Admins</td></tr><tr><td>Unlock a tag</td><td><code>cleartags.tag.&lt;id&gt;</code>, or <code>cleartags.tag.*</code> for all</td></tr></table></div><p class="muted">Pair it with any permissions plugin (such as LuckPerms) to hand out tags.</p>
+<h2>Dependencies</h2><p>None. Pair it with any permissions plugin (such as LuckPerms) to hand out tags.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with a bot: the menu opened, a locked tag was refused, an unlocked tag equipped, and chat showed the prefix.</p>
+<h2>Example config</h2><pre><code># ClearTags. Players need cleartags.tag.&lt;id&gt; to equip a tag (or cleartags.tag.* for all).
+chat-format: &quot;&lt;tag&gt;&lt;name&gt;&lt;gray&gt;: &lt;/gray&gt;&lt;message&gt;&quot;   # &lt;tag&gt; is empty when no tag is equipped
+menu-title: &quot;&lt;dark_gray&gt;Choose your tag&quot;
+messages:
+  equipped: &quot;&lt;green&gt;Equipped tag &lt;tag&gt;&quot;
+  cleared: &quot;&lt;yellow&gt;Tag removed.&quot;
+  locked: &quot;&lt;red&gt;You haven&#x27;t unlocked that tag.&quot;
+tags:
+  vip:
+    display: &quot;&lt;gold&gt;[VIP] &quot;
+    icon: GOLD_INGOT
+    description: &quot;For our supporters&quot;
+  builder:
+    display: &quot;&lt;aqua&gt;[Builder] &quot;
+    icon: BRICKS
+    description: &quot;Master of blocks&quot;
+  pvp:
+    display: &quot;&lt;red&gt;[Warrior] &quot;
+    icon: IRON_SWORD
+    description: &quot;Fearless in battle&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li></ul>
+<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearTags-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearTags/config.yml</code> is created.</li><li>Set up your tags and chat format in the config, give players <code>cleartags.tag.&lt;id&gt;</code> permissions, then run <code>/tags reload</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearTags &mdash; $5.99</h2>
+<div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
+<p>Send the equivalent of <strong>$5.99</strong> in SOL or USDC on the Solana network to:</p>
+<code class="addr">EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN</code>
+<p><button class="btn alt" type="button" data-copy>Copy address</button> <a class="btn alt" href="solana:EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN">Open in wallet</a></p>
+<img class="qr" src="../assets/solana-qr.png" alt="QR code for the Solana address" width="180" height="180">
+<p class="muted">Only send on the Solana network. Transfers can't be reversed, so double-check the address.</p></div>
+<div class="card"><h3>Get your download</h3><ol>
+<li>Send the payment.</li>
+<li>Copy your transaction ID (signature) from your wallet.</li>
+<li><a href="https://github.com/MaxClart/Clearcrates/issues">Open a GitHub issue</a> with the transaction ID and your server name.</li>
+<li>You'll be sent the ClearTags jar once the payment is confirmed.</li></ol>
+<h3>Pay by card</h3><p><a class="btn" href="#buy" data-card-checkout aria-disabled="true">Card checkout coming soon</a></p></div></div></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
