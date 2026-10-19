@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearSpawners setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearSpawners on Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearSpawners</p><h1>ClearSpawners setup guide</h1><p>Set up stackable virtual spawners with storage, collect and sell all.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearspawners" target="_blank" rel="noopener">Buy ClearSpawners &mdash; $9.99</a> <a class="btn alt" href="../plugins/clearspawners.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearSpawners-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearSpawners/config.yml</code>.</p>
+
+<h2>2. Optional: Vault for Sell all</h2><p>Sell all pays through Vault, so install Vault and an economy plugin such as EssentialsX. Without them, everything else works and the Sell all button is greyed out.</p>
+<h2>3. Using spawners</h2><ul><li>Place spawners as normal, or give them with <code>/spawners give Steve pig 1 3</code> (player, mob, amount, stack).</li><li>Right-click a spawner to open its storage: Collect items, Collect XP or Sell all.</li><li>Right-click it while holding a spawner of the same type to stack. Sneak-right-click does neither.</li><li>Break it with a silk touch tool (or with <code>clearspawners.pickup</code>) to keep the spawner and its stack.</li></ul>
+<h2>4. Config</h2><p>Edit <code>plugins/ClearSpawners/config.yml</code> (max stack, drop tables, intervals, XP, prices), then run <code>/spawners reload</code>. Data is kept in <code>plugins/ClearSpawners/spawners.yml</code>.</p>
+<h2>5. Permissions</h2><ul><li><code>clearspawners.use</code> and <code>clearspawners.sell</code>: everyone by default.</li><li><code>clearspawners.pickup</code> and <code>clearspawners.admin</code>: ops by default.</li></ul>
+<h2>Common questions</h2><h3>What was tested?</h3><p>Stacking, storage, Collect items, Collect XP, Sell all (with Vault and EssentialsX), silk touch pickup and restarts were tested with a bot using a pig spawner on Paper 1.21.4. Pickup by permission without silk touch, breaking without silk touch, explosion protection and mobs other than pig were not bot-tested.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearSpawners is $9.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearspawners" target="_blank" rel="noopener">Buy ClearSpawners</a> <a class="btn alt" href="../plugins/clearspawners.html">ClearSpawners plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
