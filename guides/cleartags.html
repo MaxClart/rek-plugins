@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearTags setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearTags on Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearTags</p><h1>ClearTags setup guide</h1><p>Set up chat tags that players unlock by permission and pick from a menu.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/cleartags" target="_blank" rel="noopener">Buy ClearTags &mdash; $5.99</a> <a class="btn alt" href="../plugins/cleartags.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearTags-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearTags/config.yml</code>.</p>
+
+<h2>2. Configure tags and chat format</h2>
+<pre><code>chat-format: &quot;&lt;tag&gt;&lt;name&gt;&lt;gray&gt;: &lt;/gray&gt;&lt;message&gt;&quot;   # &lt;tag&gt; is empty when no tag is equipped
+menu-title: &quot;&lt;dark_gray&gt;Choose your tag&quot;
+tags:
+  vip:
+    display: &quot;&lt;gold&gt;[VIP] &quot;
+    icon: GOLD_INGOT
+    description: &quot;For our supporters&quot;</code></pre>
+<p>Each tag has an id (here <code>vip</code>), a <code>display</code> shown in chat (MiniMessage, so colours and gradients work), an <code>icon</code> for the menu and a <code>description</code>. Add as many as you like. Texts are under <code>messages</code>.</p>
+<h2>3. First commands</h2><ul><li><code>/tags</code> opens the menu. <code>/tags vip</code> equips a tag, <code>/tags clear</code> removes it.</li>
+<li><code>/tags set Steve vip</code> sets Steve's tag, <code>/tags set Steve none</code> removes it.</li><li><code>/tags reload</code> reloads the config.</li></ul>
+<h2>4. Permissions</h2><p>Players need <code>cleartags.tag.&lt;id&gt;</code> to equip a tag, or <code>cleartags.tag.*</code> for all. Pair it with a permissions plugin such as LuckPerms:</p>
+<ul><li><code>/lp user &lt;player&gt; permission set cleartags.tag.vip true</code></li><li><code>/lp group vip permission set cleartags.tag.vip true</code></li></ul>
+<p><code>cleartags.use</code> (open the menu) is on for everyone, and <code>cleartags.admin</code> (set and reload) is for ops by default.</p>
+<h2>Common questions</h2><h3>Why does a tag show as grey dye?</h3><p>The player hasn't unlocked it yet: give them its permission.</p><h3>Is a database needed?</h3><p>No, the equipped tag is saved on the player.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearTags is $5.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/cleartags" target="_blank" rel="noopener">Buy ClearTags</a> <a class="btn alt" href="../plugins/cleartags.html">ClearTags plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

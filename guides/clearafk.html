@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearAFK setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearAFK on Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearAFK</p><h1>ClearAFK setup guide</h1><p>Set up AFK detection that AFK pools and piston loops can't fool.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearafk" target="_blank" rel="noopener">Buy ClearAFK &mdash; $4.99</a> <a class="btn alt" href="../plugins/clearafk.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearAFK-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearAFK/config.yml</code>.</p>
+
+<h2>2. Configure detection and kicks</h2>
+<pre><code>afk-after: 300            # seconds without activity before a player is marked AFK
+kick:
+  enabled: true
+  after: 900              # seconds AFK (after being marked AFK) before kicking
+  only-when-full: false   # only kick AFK players when the server is at max players
+  message: &quot;&lt;red&gt;You were kicked for being AFK too long.&quot;
+announce: true            # broadcast when players go AFK / come back
+tab-tag:
+  enabled: true
+  format: &quot;&lt;gray&gt;[AFK] &lt;/gray&gt;&lt;name&gt;&quot;</code></pre>
+<ul><li>Set <code>kick.enabled: false</code> if you never want to kick AFK players, or <code>only-when-full: true</code> to kick only when the server is full.</li>
+<li>Players get a warning in the last 30 seconds before a kick.</li>
+<li>Only real activity resets the timer: turning your head, chatting, commands, interacting, and breaking or placing blocks. Being pushed by water, pistons or vehicles doesn't count.</li></ul>
+<h2>3. First commands</h2><ul><li><code>/afk</code> sets yourself AFK by hand.</li><li><code>/afk list</code> shows who's AFK.</li><li><code>/afk check Steve</code> shows how long Steve has been inactive.</li><li><code>/afk reload</code> reloads the config.</li></ul>
+<h2>4. Permissions</h2><ul><li><code>clearafk.use</code> and <code>clearafk.list</code>: everyone by default.</li><li><code>clearafk.admin</code>: reload. Ops by default.</li>
+<li><code>clearafk.bypass.kick</code>: never kicked. Ops by default. Give it to staff with <code>/lp user &lt;player&gt; permission set clearafk.bypass.kick true</code>.</li><li><code>clearafk.bypass</code>: never marked AFK automatically. Nobody by default.</li></ul>
+<h2>Common questions</h2><h3>Why wasn't I kicked while testing?</h3><p>Ops have <code>clearafk.bypass.kick</code> by default. Test with a non-op account.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearAFK is $4.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearafk" target="_blank" rel="noopener">Buy ClearAFK</a> <a class="btn alt" href="../plugins/clearafk.html">ClearAFK plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

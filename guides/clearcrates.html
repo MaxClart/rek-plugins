@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearCrates setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearCrates on Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearCrates</p><h1>ClearCrates setup guide</h1><p>Set up your first crate, give out keys and show players the exact drop chances.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearcrates" target="_blank" rel="noopener">Buy ClearCrates &mdash; $9.99</a> <a class="btn alt" href="../plugins/clearcrates.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearCrates-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearCrates/config.yml</code>.</p>
+
+<h2>2. Configure your first crate</h2><p>The default config comes with a crate called <code>vote</code>. Each crate has a <code>display</code> name, <code>rows</code> for the menu size, a <code>key</code> item and a list of <code>rewards</code>.</p>
+<pre><code>crates:
+  vote:
+    display: &quot;&lt;aqua&gt;&lt;bold&gt;Vote Crate&quot;
+    rows: 3
+    key:
+      material: TRIPWIRE_HOOK
+      name: &quot;&lt;aqua&gt;Vote Key&quot;</code></pre>
+<p>Each reward has a <code>slot</code> (where it sits in the preview), a <code>chance</code>, the <code>material</code>, <code>amount</code> and <code>name</code>. Chances are weights, so they don't need to add up to 100: the preview works out the real percentage for players.</p>
+<p>For a command reward, such as money, set <code>give-item: false</code> and add <code>commands</code>. <code>%player%</code> is replaced with the winner's name:</p>
+<pre><code>      money:
+        slot: 16
+        chance: 5
+        material: GOLD_BLOCK
+        amount: 1
+        name: &quot;&lt;gold&gt;$1,000&quot;
+        give-item: false
+        commands:
+          - &quot;eco give %player% 1000&quot;</code></pre>
+<p>Under <code>animation</code> you can set <code>enabled</code>, the spin length in <code>ticks</code> (20 = 1 second) and the <code>sound</code>. Messages are under <code>messages</code> and use MiniMessage colours.</p>
+<h2>3. First commands</h2><ul>
+<li><code>/crate list</code> shows every crate.</li>
+<li><code>/crate edit vote</code> opens the in-game editor: drag items in, close to save.</li>
+<li><code>/crate setchance vote 10 15</code> sets the chance of the reward in slot 10 of the vote crate.</li>
+<li><code>/crate give Steve vote 3</code> gives Steve 3 vote keys.</li>
+<li><code>/crate preview vote</code> shows the rewards and their chances.</li>
+<li><code>/crate reload</code> reloads the config after editing the file.</li></ul>
+<p>Players right-click a key to open its crate and left-click it to preview.</p>
+<h2>4. Permissions</h2><ul><li><code>clearcrates.use</code>: list and preview crates. Everyone has it by default.</li><li><code>clearcrates.admin</code>: give, edit, setchance and reload. Ops by default. Give it to staff with <code>/lp user &lt;player&gt; permission set clearcrates.admin true</code>.</li></ul>
+<h2>Common questions</h2>
+<h3>Do the chances need to add up to 100?</h3><p>No. They're weights, and the preview shows each reward's real percentage.</p>
+<h3>What if a player's inventory is full?</h3><p>The reward drops at their feet, so it's never lost.</p>
+<h3>Does it need other plugins?</h3><p>No. PlaceholderAPI (<code>%clearcrates_keys_&lt;crate&gt;%</code>), ItemsAdder and Nexo are optional hooks.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearCrates is $9.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearcrates" target="_blank" rel="noopener">Buy ClearCrates</a> <a class="btn alt" href="../plugins/clearcrates.html">ClearCrates plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

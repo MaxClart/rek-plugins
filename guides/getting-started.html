@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Getting started | ClearForge Plugins</title>
+<meta name="description" content="How to install ClearForge plugins on Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / Getting started</p><h1>Getting started</h1><p>How to install any ClearForge plugin on a Paper 1.21 server, the right way.</p></div></div>
+<section><div class="wrap">
+<h2>What you need</h2><ul><li>A Paper 1.21 server (our plugins are tested on Paper 1.21.4). Folia isn't supported yet.</li><li>Java 21.</li><li>Access to your server's files (FTP or your host's file manager) and console.</li></ul>
+<h2>1. Download the jar</h2><p>After you pay, Sell.app sends you a delivery email and shows a delivery page. Download the plugin's <code>.jar</code> file from there (for example <code>ClearKits-1.0.0.jar</code>).</p>
+<h2>2. Put it in /plugins</h2><ol><li>Stop your server.</li><li>Upload the jar into the <code>plugins/</code> folder of your server.</li></ol>
+<h2>3. Restart, don't /reload</h2><p>Start the server again with a full restart. Avoid <code>/reload</code>: it can leave plugins in a broken state. After you edit a config later, use the plugin's own reload command instead (each guide lists it).</p>
+<h2>4. Check the console</h2><p>Watch the console while the server starts. You should see the plugin being enabled. Red errors that mention the plugin name mean something is wrong, see troubleshooting below. In game, <code>/plugins</code> lists it in green when it's loaded.</p>
+<h2>5. Find config.yml</h2><p>On first start the plugin creates <code>plugins/&lt;PluginName&gt;/config.yml</code>, for example <code>plugins/ClearKits/config.yml</code>. Every config is commented. Edit it, save, then run the plugin's reload command.</p>
+<h2>6. Give permissions</h2><p>Each plugin's player permission is on for everyone by default, and admin permissions are for ops by default. To give extra permissions, use a permissions plugin. LuckPerms is a common free option:</p>
+<ul><li>One player: <code>/lp user Steve permission set clearkits.kit.vip true</code></li><li>A whole group: <code>/lp group vip permission set clearkits.kit.vip true</code></li></ul>
+<h2>Troubleshooting</h2>
+<h3>Wrong Java version</h3><p>If the console says the plugin was compiled for a newer Java version (an "UnsupportedClassVersionError"), your server isn't on Java 21. Switch to Java 21 in your host's panel, or install it, and restart.</p>
+<h3>Plugin not loading</h3><ul><li>Check the jar is directly in <code>plugins/</code>, not in a subfolder, and ends in <code>.jar</code>.</li><li>Check you're running Paper 1.21, not Spigot, Bukkit or Folia.</li><li>Restart fully and read the first error in the console that mentions the plugin.</li></ul>
+<h3>Permissions not working</h3><ul><li>Check the node is spelt exactly as in the guide.</li><li>Ops have admin permissions by default; test with a non-op account too.</li><li>With LuckPerms, check what a player has with <code>/lp user &lt;player&gt; permission info</code>.</li></ul>
+<p>Still stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a> with the console error.</p>
+<p><a class="btn alt" href="index.html">All guides</a></p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

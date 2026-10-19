@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearVotes setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearVotes on Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearVotes</p><h1>ClearVotes setup guide</h1><p>Set up vote rewards, milestones, streaks and vote links.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearvotes" target="_blank" rel="noopener">Buy ClearVotes &mdash; $6.99</a> <a class="btn alt" href="../plugins/clearvotes.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearVotes-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearVotes/config.yml</code>.</p>
+
+<div class="note"><strong>NuVotifier is required for real votes.</strong> ClearVotes receives votes from <a href="https://github.com/NuVotifier/NuVotifier">NuVotifier</a> (free). Install and set it up first, then add your server to your vote sites. Without it, only <code>/votes test</code> works.<br><span class="warn">Live votes from vote sites haven't been tested yet.</span> Testing used <code>/votes test</code>.</div>
+<h2>2. Configure rewards</h2>
+<p>Put your real vote site links in <code>links</code> (clickable on <code>/vote</code>):</p>
+<pre><code>links:
+  - &quot;&lt;aqua&gt;&lt;click:open_url:&#x27;https://example.com/vote1&#x27;&gt;Vote site 1&lt;/click&gt;&quot;</code></pre>
+<p><code>rewards</code> are console commands run for every vote, with <code>%player%</code>:</p>
+<pre><code>rewards:
+  - &quot;give %player% diamond 1&quot;
+  - &quot;xp add %player% 100&quot;
+milestones:
+  10:
+    - &quot;give %player% diamond_block 1&quot;
+streaks:
+  3:
+    - &quot;give %player% golden_apple 1&quot;</code></pre>
+<ul><li><code>milestones</code>: extra commands when a player reaches that vote total (10th, 50th, or any number).</li><li><code>streaks</code>: bonus commands on those days of a daily voting streak.</li>
+<li><code>broadcast</code> and <code>messages</code> (<code>thanks</code>, <code>queued</code>) set the texts.</li></ul>
+<h2>3. First commands</h2><ul><li><code>/votes test Steve</code> sends a test vote for Steve, so you can check rewards without a vote site.</li><li><code>/vote</code> shows the links and your total and streak.</li>
+<li><code>/votes top</code> shows the leaderboard.</li><li><code>/votes reset Steve</code> resets Steve's votes.</li><li><code>/votes reload</code> reloads the config.</li></ul>
+<h2>4. Permissions</h2><ul><li><code>clearvotes.use</code>: vote links and stats. Everyone by default.</li><li><code>clearvotes.admin</code>: test, reset and reload. Ops by default, e.g. <code>/lp user &lt;player&gt; permission set clearvotes.admin true</code>.</li></ul>
+<h2>Common questions</h2><h3>What if a player votes while offline?</h3><p>Their rewards are queued and given when they next join.</p>
+<h3>Does it work without NuVotifier?</h3><p>Only <code>/votes test</code> works. Real votes from sites need NuVotifier.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearVotes is $6.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearvotes" target="_blank" rel="noopener">Buy ClearVotes</a> <a class="btn alt" href="../plugins/clearvotes.html">ClearVotes plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

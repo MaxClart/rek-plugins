@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearKits setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearKits on Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearKits</p><h1>ClearKits setup guide</h1><p>Set up a starter kit, a daily kit and VIP kits with cooldowns and a click-to-claim menu.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearkits" target="_blank" rel="noopener">Buy ClearKits &mdash; $7.99</a> <a class="btn alt" href="../plugins/clearkits.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearKits-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearKits/config.yml</code>.</p>
+
+<h2>2. Configure your kits</h2><p>Each kit under <code>kits</code> has a <code>display</code> name, an <code>icon</code>, a menu <code>slot</code>, <code>public</code>, a <code>cooldown</code>, <code>items</code> and optional <code>commands</code>.</p>
+<ul><li><code>cooldown</code> is in seconds: <code>0</code> means no cooldown, <code>-1</code> means one time only, <code>86400</code> is one day.</li>
+<li><code>public: true</code> means everyone can use it. Otherwise players need <code>clearkits.kit.&lt;name&gt;</code>.</li></ul>
+<pre><code>  daily:
+    display: &quot;&lt;yellow&gt;Daily&quot;
+    icon: GOLDEN_APPLE
+    slot: 12
+    public: true
+    cooldown: 86400
+    items:
+      - {material: COOKED_BEEF, amount: 16}
+      - {material: TORCH, amount: 32}
+    commands:
+      - &quot;eco give %player% 100&quot;</code></pre>
+<p><code>first-join-kit: starter</code> gives the starter kit once to brand-new players. Set it to <code>""</code> to turn it off. The menu title and size are under <code>gui</code> (<code>title</code>, <code>rows</code>).</p>
+<h2>3. First commands</h2><ul>
+<li><code>/kits</code> opens the menu, <code>/kit daily</code> claims the daily kit.</li>
+<li>Hold the items you want, then <code>/kit create pvp 3600</code> saves your inventory as a kit called pvp with a one-hour cooldown. Use <code>-1</code> for one time only.</li>
+<li><code>/kit give Steve vip</code> gives Steve the VIP kit, ignoring the cooldown.</li>
+<li><code>/kit reset Steve daily</code> resets Steve's cooldown for one kit (leave the kit out to reset all).</li>
+<li><code>/kit delete pvp</code> deletes a kit, <code>/kit reload</code> reloads the config.</li></ul>
+<h2>4. Permissions</h2><ul><li><code>clearkits.use</code>: open the menu and claim kits you can access. Everyone by default.</li>
+<li><code>clearkits.kit.&lt;name&gt;</code>: access to a non-public kit, e.g. <code>/lp user &lt;player&gt; permission set clearkits.kit.vip true</code>. <code>clearkits.kit.*</code> gives every kit.</li>
+<li><code>clearkits.bypass.cooldown</code>: ignore cooldowns. Ops by default.</li><li><code>clearkits.admin</code>: create, delete, give, reset and reload. Ops by default.</li></ul>
+<h2>Common questions</h2>
+<h3>Why can I claim every kit with no cooldown?</h3><p>On Paper, ops have every kit and ignore cooldowns by default. Test with a non-op account.</p>
+<h3>Do cooldowns survive a restart?</h3><p>Yes, they're saved to <code>data.yml</code>.</p>
+<h3>Full inventory?</h3><p>Leftover items drop at the player's feet.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearKits is $7.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearkits" target="_blank" rel="noopener">Buy ClearKits</a> <a class="btn alt" href="../plugins/clearkits.html">ClearKits plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
