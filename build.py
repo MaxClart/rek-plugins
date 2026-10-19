@@ -21,7 +21,7 @@ def page(path,title,desc,body):
 <main>
 {body}
 </main>
-<footer><div class="wrap"><p>&copy; 2026 {BRAND}. Made for Minecraft server owners and admins.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+<footer><div class="wrap"><p>&copy; 2026 {BRAND}. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
 </body>
 </html>
 '''
@@ -76,7 +76,9 @@ faq=f'''<section><div class="wrap"><h1>FAQ</h1>
 <h2>Refunds</h2><p>Plugins are digital goods, so all sales are normally final once the file has been sent. If something doesn't work on your server, open an issue first and we'll help you fix it. If we genuinely can't get it working on a supported setup, get in touch and we'll sort out a fair solution.</p>
 <h2>Server owner FAQ</h2>
 <h3>Which server software is supported?</h3><p>Every plugin runs on Paper 1.21 (tested on 1.21.4) with Java 21. Folia isn't supported yet. Spigot and Bukkit aren't tested.</p>
-<h3>Does it need other plugins?</h3><p>No. ClearKits, ClearDaily and ClearAFK have no dependencies. For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks.</p>
+<h3>Does it need other plugins?</h3><p>ClearKits, ClearDaily, ClearAFK and ClearTags have no dependencies (ClearTags works best with a permissions plugin such as LuckPerms). For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks. ClearVotes needs NuVotifier (free) to receive votes from vote sites.</p>
+<h3>How many plugins are there?</h3><p>Six: ClearCrates, ClearKits, ClearDaily, ClearAFK, ClearTags and ClearVotes.</p>
+<h3>Are the plugins made with AI?</h3><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p>
 <h3>Can I use it on more than one server?</h3><p>One purchase covers one server network (e.g. a proxy with its backend servers). Please don't redistribute or resell it.</p>
 <h3>How do I pay?</h3><p>Right now with SOL or USDC on Solana. Card checkout is coming soon. See the Buy section on each plugin page.</p>
 <h3>How fast do I get the plugin?</h3><p>Once you send your transaction ID and the payment is confirmed, the jar is sent to you by hand, so it isn't instant.</p>

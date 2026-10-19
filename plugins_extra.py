@@ -24,6 +24,30 @@ P=[
   cmds=[("<code>/afk</code>","<code>clearafk.use</code> (everyone by default)"),("<code>/afk list</code>, <code>/afk check &lt;player&gt;</code>","<code>clearafk.list</code> (everyone by default)"),("<code>/afk reload</code>","<code>clearafk.admin</code> (ops by default)"),("Never kicked","<code>clearafk.bypass.kick</code> (ops by default)"),("Never marked AFK automatically","<code>clearafk.bypass</code> (nobody by default)")],
   cmdnote="",
   steps=["Set <code>afk-after</code> and the kick options in the config, then run <code>/afk reload</code>."]),
+ dict(slug="cleartags",name="ClearTags",price="$5.99",jar="ClearTags-1.0.0.jar",
+  card="Players pick a chat tag from a click menu. Tags unlock by permission, so they work with ranks, store packages or crates. No dependencies.",
+  lead="Chat tags without the setup headache. Players type /tags, see every tag, and click to equip one. Tags they haven't unlocked show as locked grey dye.",
+  why=[("Click menu","unlocked tags show their icon, locked tags show as grey dye, and a barrier removes your tag."),("Unlock by permission","<code>cleartags.tag.&lt;id&gt;</code>, or <code>cleartags.tag.*</code> for all, so tags work with ranks, store packages or crates."),("No database","the equipped tag is saved on the player.")],
+  feat=["Tags use MiniMessage, so colours and gradients work","Custom chat format, e.g. <tag><name><gray>: </gray><message>","/tags <tag> and /tags clear for players","/tags set <player> <tag|none> and /tags reload for admins"],
+  cmdhead="Who",
+  cmds=[("<code>/tags</code>, <code>/tags &lt;tag&gt;</code>, <code>/tags clear</code>","Players"),("<code>/tags set &lt;player&gt; &lt;tag|none&gt;</code>, <code>/tags reload</code>","Admins"),("Unlock a tag","<code>cleartags.tag.&lt;id&gt;</code>, or <code>cleartags.tag.*</code> for all")],
+  cmdnote="Pair it with any permissions plugin (such as LuckPerms) to hand out tags.",
+  deps="None. Pair it with any permissions plugin (such as LuckPerms) to hand out tags.",
+  reqs=["Paper 1.21.4","Java 21"],
+  tested="Tested on Paper 1.21.4 with a bot: the menu opened, a locked tag was refused, an unlocked tag equipped, and chat showed the prefix.",
+  steps=["Set up your tags and chat format in the config, give players <code>cleartags.tag.&lt;id&gt;</code> permissions, then run <code>/tags reload</code>."]),
+ dict(slug="clearvotes",name="ClearVotes",price="$6.99",jar="ClearVotes-1.0.0.jar",
+  card="Vote rewards with milestone bonuses, daily streaks and an offline queue. Hooks into NuVotifier.",
+  lead="Turn votes into players. ClearVotes hooks into NuVotifier and runs any commands you like when someone votes, with milestone and daily streak bonuses.",
+  why=[("Milestones","extra rewards at a player's 10th, 50th (or any) vote."),("Daily streaks","bonus rewards for voting on consecutive days."),("Offline queue","vote while offline and the rewards arrive on your next join.")],
+  feat=["Any console commands per vote, with %player%","Broadcast message and clickable vote links on /vote, with the player's total and streak","/votes top leaderboard","/votes test <player> to try rewards without a vote site","/votes reset and /votes reload"],
+  cmdhead="What it does",
+  cmds=[("<code>/vote</code>","Clickable vote links, plus your total and streak"),("<code>/votes top</code>","Vote leaderboard"),("<code>/votes test &lt;player&gt;</code>","Try rewards without a vote site"),("<code>/votes reset</code>, <code>/votes reload</code>","Reset votes, reload the config")],
+  cmdnote="",
+  deps="<a href=\"https://github.com/NuVotifier/NuVotifier\">NuVotifier</a> (free) is needed to receive votes from vote sites. Without it, <code>/votes test</code> still works.",
+  reqs=["Paper 1.21.4","Java 21","NuVotifier (free) to receive votes from sites"],
+  tested="Tested on Paper 1.21.4 with bots using /votes test: rewards were given, /vote showed stats, an offline player's rewards were delivered on join, and /votes top listed both voters. Live votes from a vote site were not tested yet.",
+  steps=["Install NuVotifier and add your server to your vote sites.","Set your rewards, milestones, streaks and vote links in the config, then run <code>/votes reload</code>.","Try it with <code>/votes test &lt;player&gt;</code>."]),
 ]
 NEWCARDS="";EXTRA=[]
 for x in P:
@@ -37,17 +61,19 @@ for x in P:
     fl="".join(f"<li>{html.escape(f)}</li>" for f in x["feat"])
     rows="".join(f"<tr><td>{a}</td><td>{b}</td></tr>" for a,b in x["cmds"])
     note=f'<p class="muted">{x["cmdnote"]}</p>' if x["cmdnote"] else ""
+    tst=f'<h2>Tested</h2><p>{html.escape(x["tested"])}</p>' if x.get("tested") else ""
+    reqs="".join(f"<li>{html.escape(r)}</li>" for r in x.get("reqs",["Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)","Java 21","Folia is not supported yet"]))
     steps="".join(f"<li>{t}</li>" for t in x["steps"])
     body=f'''<div class="hero"><div class="wrap"><h1>{n}</h1><p>{html.escape(x["lead"])}</p>
 <p class="price">{x["price"]}</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
 <section><div class="wrap"><img src="../assets/{s}-cover.png" alt="{n} cover" width="1200" height="600">
 <h2>Why {n}</h2><ul>{why}</ul>
 <h2>Features</h2><ul>{fl}</ul>
-<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>{x.get("cmdhead","Permission")}</th></tr>
 {rows}</table></div>{note}
-<h2>Dependencies</h2><p>None.</p>
+<h2>Dependencies</h2><p>{x.get("deps","None.")}</p>{tst}
 <h2>Example config</h2><pre><code>{cfgt}</code></pre>
-<h2>Requirements</h2><ul><li>Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)</li><li>Java 21</li><li>Folia is not supported yet</li></ul>
+<h2>Requirements</h2><ul>{reqs}</ul>
 <h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>{x["jar"]}</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/{n}/config.yml</code> is created.</li>{steps}</ol>
 <h2>Support</h2><p>Bugs or questions: <a href="{ISSUES}">open an issue on GitHub</a>.</p>
 <h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
