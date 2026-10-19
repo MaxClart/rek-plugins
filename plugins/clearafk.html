@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearAFK | ClearForge Plugins</title>
+<meta name="description" content="ClearAFK: AFK detection that water streams and pistons can't fool, with an [AFK] tab tag, announcements and an optional kick. For Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="../index.html"><span></span>ClearForge Plugins</a>
+<nav><a href="../index.html#plugins">Plugins</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a></nav></div></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearAFK</h1><p>Know who&#x27;s really there. Only real activity resets the AFK timer, so AFK pools and piston loops don&#x27;t keep idle players counted as active.</p>
+<p class="price">$4.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearafk-cover.png" alt="ClearAFK cover" width="1200" height="600">
+<h2>Why ClearAFK</h2><ul><li><strong>Hard to fool:</strong> only head turns, chat, commands, interacting and breaking or placing blocks count as activity. Being pushed by water, pistons or vehicles doesn't.</li><li><strong>Visible:</strong> an [AFK] tag shows in the tab list.</li><li><strong>Fair kicks:</strong> a warning in the last 30 seconds, and an option to kick only when the server is full.</li></ul>
+<h2>Features</h2><ul><li>Automatic AFK after a set time (default 5 minutes)</li><li>/afk to set yourself AFK by hand</li><li>Tab-list tag format you can change</li><li>Broadcast when players go AFK and come back (can be turned off)</li><li>Optional kick after a set time AFK</li><li>/afk list and /afk check &lt;player&gt; to see who&#x27;s idle and for how long</li><li>MiniMessage colours in all messages</li><li>Tab completion</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/afk</code></td><td><code>clearafk.use</code> (everyone by default)</td></tr><tr><td><code>/afk list</code>, <code>/afk check &lt;player&gt;</code></td><td><code>clearafk.list</code> (everyone by default)</td></tr><tr><td><code>/afk reload</code></td><td><code>clearafk.admin</code> (ops by default)</td></tr><tr><td>Never kicked</td><td><code>clearafk.bypass.kick</code> (ops by default)</td></tr><tr><td>Never marked AFK automatically</td><td><code>clearafk.bypass</code> (nobody by default)</td></tr></table></div>
+<h2>Dependencies</h2><p>None.</p>
+<h2>Example config</h2><pre><code># ClearAFK - AFK detection that&#x27;s hard to fool.
+# Only &quot;real&quot; activity resets the timer: turning your head, chatting, running commands,
+# interacting or breaking/placing blocks. Being pushed by water or pistons, or riding
+# an AFK-pool, does not count as activity.
+afk-after: 300            # seconds without activity before a player is marked AFK
+kick:
+  enabled: true
+  after: 900              # seconds AFK (after being marked AFK) before kicking. Players with clearafk.bypass.kick are never kicked
+  only-when-full: false   # only kick AFK players when the server is at max players
+  message: &quot;&lt;red&gt;You were kicked for being AFK too long.&quot;
+announce: true            # broadcast when players go AFK / come back
+tab-tag:
+  enabled: true
+  format: &quot;&lt;gray&gt;[AFK] &lt;/gray&gt;&lt;name&gt;&quot;
+messages:
+  prefix: &quot;&lt;gray&gt;[AFK]&lt;/gray&gt; &quot;
+  now-afk: &quot;&lt;gray&gt;&lt;name&gt; is now AFK.&quot;
+  no-longer-afk: &quot;&lt;gray&gt;&lt;name&gt; is no longer AFK.&quot;
+  you-afk: &quot;&lt;gray&gt;You are now AFK.&quot;
+  you-back: &quot;&lt;green&gt;Welcome back!&quot;
+  kick-warning: &quot;&lt;yellow&gt;You&#x27;ll be kicked for being AFK in &lt;seconds&gt; seconds. Move to stay.&quot;
+  list: &quot;&lt;gray&gt;AFK players (&lt;count&gt;): &lt;white&gt;&lt;players&gt;&quot;
+  none: &quot;&lt;gray&gt;Nobody is AFK.&quot;
+  check: &quot;&lt;white&gt;&lt;name&gt;&lt;/white&gt; &lt;gray&gt;has been inactive for &lt;white&gt;&lt;time&gt;&lt;/white&gt;.&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)</li><li>Java 21</li><li>Folia is not supported yet</li></ul>
+<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearAFK-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearAFK/config.yml</code> is created.</li><li>Set <code>afk-after</code> and the kick options in the config, then run <code>/afk reload</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearAFK &mdash; $4.99</h2>
+<div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
+<p>Send the equivalent of <strong>$4.99</strong> in SOL or USDC on the Solana network to:</p>
+<code class="addr">EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN</code>
+<p><button class="btn alt" type="button" data-copy>Copy address</button> <a class="btn alt" href="solana:EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN">Open in wallet</a></p>
+<img class="qr" src="../assets/solana-qr.png" alt="QR code for the Solana address" width="180" height="180">
+<p class="muted">Only send on the Solana network. Transfers can't be reversed, so double-check the address.</p></div>
+<div class="card"><h3>Get your download</h3><ol>
+<li>Send the payment.</li>
+<li>Copy your transaction ID (signature) from your wallet.</li>
+<li><a href="https://github.com/MaxClart/Clearcrates/issues">Open a GitHub issue</a> with the transaction ID and your server name.</li>
+<li>You'll be sent the ClearAFK jar once the payment is confirmed.</li></ol>
+<h3>Pay by card</h3><p><a class="btn" href="#buy" data-card-checkout aria-disabled="true">Card checkout coming soon</a></p></div></div></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

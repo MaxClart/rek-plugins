@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearDaily | ClearForge Plugins</title>
+<meta name="description" content="ClearDaily: A daily login rewards calendar with streaks, item and command rewards, and join reminders. For Paper 1.21.">
+<link rel="stylesheet" href="../css/style.css">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="../index.html"><span></span>ClearForge Plugins</a>
+<nav><a href="../index.html#plugins">Plugins</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a></nav></div></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearDaily</h1><p>Give players a reason to log in every day. They type /daily, see the whole calendar, and click today&#x27;s reward. Tomorrow they move on to the next day.</p>
+<p class="price">$6.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/cleardaily-cover.png" alt="ClearDaily cover" width="1200" height="600">
+<h2>Why ClearDaily</h2><ul><li><strong>Clear calendar:</strong> claimed days, today's glowing reward and locked days are all marked.</li><li><strong>Real streaks:</strong> miss a whole day and it's back to day 1 (or turn that off).</li><li><strong>Your timezone:</strong> the day rolls over at midnight in the timezone you set.</li></ul>
+<h2>Features</h2><ul><li>Up to 45 days, each with its own icon, name, items and console commands (%player%)</li><li>Loop back to day 1 after the last day, or stop (configurable)</li><li>Join reminder when a reward is waiting (can be turned off)</li><li>Streak card showing total rewards claimed and time until the next one</li><li>Progress saved to data.yml, so it survives restarts</li><li>Full inventories: leftover items drop at the player&#x27;s feet, never lost</li><li>MiniMessage colours in all names and messages</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/daily</code> (or <code>/rewards</code>)</td><td><code>cleardaily.use</code> (everyone by default)</td></tr><tr><td><code>/daily reset &lt;player&gt;</code></td><td><code>cleardaily.admin</code> (ops by default)</td></tr><tr><td><code>/daily setday &lt;player&gt; &lt;day&gt;</code></td><td><code>cleardaily.admin</code></td></tr><tr><td><code>/daily reload</code></td><td><code>cleardaily.admin</code></td></tr></table></div>
+<h2>Dependencies</h2><p>None.</p>
+<h2>Example config</h2><pre><code># ClearDaily - a daily login rewards calendar.
+# Players claim one reward per day. Claiming on consecutive days moves them along the calendar.
+timezone: &quot;Europe/London&quot;     # when the &quot;day&quot; rolls over
+reset-on-miss: true           # missing a whole day sends the player back to day 1
+loop: true                    # after the last day, start again from day 1
+remind-on-join: true          # tell players on join when a reward is waiting
+messages:
+  prefix: &quot;&lt;gold&gt;[Daily]&lt;/gold&gt; &quot;
+  claimed: &quot;&lt;green&gt;You claimed your day &lt;day&gt; reward!&quot;
+  already: &quot;&lt;yellow&gt;You&#x27;ve already claimed today&#x27;s reward. Come back in &lt;time&gt;.&quot;
+  waiting: &quot;&lt;green&gt;Your day &lt;day&gt; reward is ready! Type &lt;white&gt;/daily&lt;/white&gt; to claim it.&quot;
+  streak-lost: &quot;&lt;red&gt;You missed a day, so your streak went back to day 1.&quot;
+  finished: &quot;&lt;gray&gt;You&#x27;ve claimed every reward on the calendar.&quot;
+  inventory-full: &quot;&lt;yellow&gt;Your inventory was full, so some items dropped at your feet.&quot;
+gui:
+  title: &quot;&lt;gold&gt;&lt;bold&gt;Daily Rewards&quot;
+# Up to 45 days. Unlisted day numbers in between are skipped.
+days:
+  1: {icon: BREAD, name: &quot;&lt;white&gt;16 Bread&quot;, items: [{material: BREAD, amount: 16}]}
+  2: {icon: IRON_INGOT, name: &quot;&lt;white&gt;8 Iron Ingots&quot;, items: [{material: IRON_INGOT, amount: 8}]}
+  3: {icon: GOLD_INGOT, name: &quot;&lt;yellow&gt;$250&quot;, commands: [&quot;eco give %player% 250&quot;]}
+  4: {icon: EXPERIENCE_BOTTLE, name: &quot;&lt;green&gt;16 Bottles o&#x27; Enchanting&quot;, items: [{material: EXPERIENCE_BOTTLE, amount: 16}]}
+  5: {icon: GOLDEN_APPLE, name: &quot;&lt;gold&gt;2 Golden Apples&quot;, items: [{material: GOLDEN_APPLE, amount: 2}]}
+  6: {icon: EMERALD, name: &quot;&lt;green&gt;8 Emeralds&quot;, items: [{material: EMERALD, amount: 8}]}
+  7: {icon: DIAMOND, name: &quot;&lt;aqua&gt;3 Diamonds + $1,000&quot;, items: [{material: DIAMOND, amount: 3}], commands: [&quot;eco give %player% 1000&quot;]}
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)</li><li>Java 21</li><li>Folia is not supported yet</li></ul>
+<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearDaily-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearDaily/config.yml</code> is created.</li><li>Set your timezone and the rewards for each day in the config, then run <code>/daily reload</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearDaily &mdash; $6.99</h2>
+<div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
+<p>Send the equivalent of <strong>$6.99</strong> in SOL or USDC on the Solana network to:</p>
+<code class="addr">EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN</code>
+<p><button class="btn alt" type="button" data-copy>Copy address</button> <a class="btn alt" href="solana:EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN">Open in wallet</a></p>
+<img class="qr" src="../assets/solana-qr.png" alt="QR code for the Solana address" width="180" height="180">
+<p class="muted">Only send on the Solana network. Transfers can't be reversed, so double-check the address.</p></div>
+<div class="card"><h3>Get your download</h3><ol>
+<li>Send the payment.</li>
+<li>Copy your transaction ID (signature) from your wallet.</li>
+<li><a href="https://github.com/MaxClart/Clearcrates/issues">Open a GitHub issue</a> with the transaction ID and your server name.</li>
+<li>You'll be sent the ClearDaily jar once the payment is confirmed.</li></ol>
+<h3>Pay by card</h3><p><a class="btn" href="#buy" data-card-checkout aria-disabled="true">Card checkout coming soon</a></p></div></div></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
