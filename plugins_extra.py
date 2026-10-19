@@ -54,7 +54,7 @@ for x in P:
     n=x["name"];s=x["slug"]
     NEWCARDS+=f'''<div class="card"><img src="assets/{s}-cover.png" alt="{n} cover" width="1200" height="600">
 <h3>{n}</h3><p>{html.escape(x["card"])}</p>
-<p class="price">{x["price"]}</p><p><a class="btn" href="plugins/{s}.html">View plugin</a> <a class="btn alt" href="plugins/{s}.html#buy">Buy</a></p></div>
+<p class="price">{x["price"]}</p><p><a class="btn" href="plugins/{s}.html">View plugin</a> <a class="btn alt" href="https://clearforge.sell.app/product/{s}" target="_blank" rel="noopener">Buy</a></p></div>
 '''
     cfgt=html.escape(open(f"/workspace/products/{s}/src/main/resources/config.yml").read())
     why="".join(f"<li><strong>{a}:</strong> {b}</li>" for a,b in x["why"])

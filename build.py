@@ -17,7 +17,7 @@ def page(path,title,desc,body):
 </head>
 <body>
 <header><div class="wrap"><a class="brand" href="{r}index.html"><span></span>{BRAND}</a>
-<nav><a href="{r}index.html#plugins">Plugins</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a></nav></div></header>
+<nav><a href="{r}index.html#plugins">Plugins</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></div></header>
 <main>
 {body}
 </main>
@@ -25,8 +25,14 @@ def page(path,title,desc,body):
 </body>
 </html>
 '''
+SELL="https://clearforge.sell.app"
+def sell(name): return f"{SELL}/product/{name.lower()}"
 def buy(r,name="ClearCrates",price="$9.99"):
     return f'''<section id="buy"><div class="wrap"><h2>Buy {name} &mdash; {price}</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your {name} download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="{sell(name)}" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<h3>Prefer SOL/USDC? Pay manually</h3>
+<p class="muted">Manual payments are checked by hand and may take longer.</p>
 <div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
 <p>Send the equivalent of <strong>{price}</strong> in SOL or USDC on the Solana network to:</p>
 <code class="addr">{ADDR}</code>
@@ -37,8 +43,7 @@ def buy(r,name="ClearCrates",price="$9.99"):
 <li>Send the payment.</li>
 <li>Copy your transaction ID (signature) from your wallet.</li>
 <li><a href="{ISSUES}">Open a GitHub issue</a> with the transaction ID and your server name.</li>
-<li>You'll be sent the {name} jar once the payment is confirmed.</li></ol>
-<h3>Pay by card</h3><p><a class="btn" href="#buy" data-card-checkout aria-disabled="true">Card checkout coming soon</a></p></div></div></div></section>'''
+<li>You'll be sent the {name} jar once the payment is confirmed.</li></ol></div></div></div></section>'''
 feat=["Spin animation (length and sound configurable, or turn it off)","Right-click a key to open, left-click to preview","In-game editor: drag items in, close to save","Item and command rewards, with a %player% placeholder","MiniMessage colours in names and messages","Full inventories: rewards drop at the player's feet, never lost","Tab completion on every command"]
 cfg=html.escape(open("/workspace/products/clearcrates/src/main/resources/config.yml").read())
 index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server owners</h1>
@@ -47,7 +52,7 @@ index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server o
 <section id="plugins"><div class="wrap"><h2>Plugin catalogue</h2><div class="grid">
 <div class="card"><img src="assets/clearcrates-cover.png" alt="ClearCrates cover" width="1200" height="600">
 <h3>ClearCrates</h3><p>Transparent crates for Paper 1.21: exact drop chances shown, fixed preview slots and lightweight animations. No required dependencies.</p>
-<p class="price">$9.99</p><p><a class="btn" href="plugins/clearcrates.html">View plugin</a> <a class="btn alt" href="plugins/clearcrates.html#buy">Buy</a></p></div>
+<p class="price">$9.99</p><p><a class="btn" href="plugins/clearcrates.html">View plugin</a> <a class="btn alt" href="https://clearforge.sell.app/product/clearcrates" target="_blank" rel="noopener">Buy</a></p></div>
 {{NEWCARDS}}</div></div></section>
 <section id="soon"><div class="wrap"><h2>Coming soon</h2><div class="grid">
 <div class="card soon"><p>More server plugins are in the works.<br>Got a request? <a href="{ISSUES}">Tell us what your server needs</a>.</p></div>
@@ -80,7 +85,7 @@ faq=f'''<section><div class="wrap"><h1>FAQ</h1>
 <h3>How many plugins are there?</h3><p>Six: ClearCrates, ClearKits, ClearDaily, ClearAFK, ClearTags and ClearVotes.</p>
 <h3>Are the plugins made with AI?</h3><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p>
 <h3>Can I use it on more than one server?</h3><p>One purchase covers one server network (e.g. a proxy with its backend servers). Please don't redistribute or resell it.</p>
-<h3>How do I pay?</h3><p>Right now with SOL or USDC on Solana. Card checkout is coming soon. See the Buy section on each plugin page.</p>
+<h3>How do I pay?</h3><p>With Bitcoin through Sell.app, which gives you an instant automatic download, or with SOL or USDC on Solana manually (checked by hand, so it may take longer). See the Buy section on each plugin page.</p>
 <h3>How fast do I get the plugin?</h3><p>Once you send your transaction ID and the payment is confirmed, the jar is sent to you by hand, so it isn't instant.</p>
 <h3>Where do I report bugs?</h3><p><a href="{ISSUES}">GitHub issues</a>.</p></div></section>'''
 terms=f'''<section><div class="wrap"><h1>Terms</h1>
