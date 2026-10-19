@@ -9,11 +9,10 @@
 <script src="../js/main.js" defer></script>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="../index.html"><span></span>ClearForge Plugins</a>
-<nav><a href="../index.html#plugins">Plugins</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></div></header>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
 <main>
 <div class="hero"><div class="wrap"><h1>ClearKits</h1><p>Kits that just work. Players open /kits, see exactly which kits are ready, and click to claim. You build kits from your own inventory in seconds.</p>
-<p class="price">$7.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<p class="price">$7.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearkits.html">Setup guide</a></p></div></div>
 <section><div class="wrap"><img src="../assets/clearkits-cover.png" alt="ClearKits cover" width="1200" height="600">
 <h2>Why ClearKits</h2><ul><li><strong>Live status:</strong> every kit in the menu shows Click to claim, Ready in 23h 59m, Already claimed or Locked.</li><li><strong>Build in game:</strong> <code>/kit create</code> saves your inventory as a kit, enchantments and names included.</li><li><strong>Survives restarts:</strong> cooldowns are saved to <code>data.yml</code>.</li></ul>
 <h2>Features</h2><ul><li>Per-kit cooldowns in seconds, or one-time-only kits (cooldown -1)</li><li>First-join kit given automatically to brand-new players (configurable, or off)</li><li>Item rewards plus console commands with a %player% placeholder</li><li>Public kits, or a per-kit permission clearkits.kit.&lt;name&gt;</li><li>Full inventories: leftover items drop at the player&#x27;s feet, never lost</li><li>MiniMessage colours in names, the menu title and all messages</li><li>Tab completion on every command</li></ul>
@@ -68,7 +67,7 @@ kits:
       - {material: DIAMOND, amount: 8}
 </code></pre>
 <h2>Requirements</h2><ul><li>Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)</li><li>Java 21</li><li>Folia is not supported yet</li></ul>
-<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearKits-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearKits/config.yml</code> is created.</li><li>Edit the kits in the config, or hold the items you want and run <code>/kit create &lt;name&gt; &lt;cooldown&gt;</code>.</li><li>Give non-public kits with the permission <code>clearkits.kit.&lt;name&gt;</code>, then run <code>/kit reload</code> after editing the file.</li></ol>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearkits.html">ClearKits setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearKits-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearKits/config.yml</code> is created.</li><li>Edit the kits in the config, or hold the items you want and run <code>/kit create &lt;name&gt; &lt;cooldown&gt;</code>.</li><li>Give non-public kits with the permission <code>clearkits.kit.&lt;name&gt;</code>, then run <code>/kit reload</code> after editing the file.</li></ol>
 <h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
 <h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
 <section id="buy"><div class="wrap"><h2>Buy ClearKits &mdash; $7.99</h2>

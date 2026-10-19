@@ -9,11 +9,10 @@
 <script src="../js/main.js" defer></script>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="../index.html"><span></span>ClearForge Plugins</a>
-<nav><a href="../index.html#plugins">Plugins</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></div></header>
+<header><nav><a class="brand" href="../index.html">Clear<span>Forge</span> Plugins</a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
 <main>
 <div class="hero"><div class="wrap"><h1>ClearDaily</h1><p>Give players a reason to log in every day. They type /daily, see the whole calendar, and click today&#x27;s reward. Tomorrow they move on to the next day.</p>
-<p class="price">$6.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<p class="price">$6.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/cleardaily.html">Setup guide</a></p></div></div>
 <section><div class="wrap"><img src="../assets/cleardaily-cover.png" alt="ClearDaily cover" width="1200" height="600">
 <h2>Why ClearDaily</h2><ul><li><strong>Clear calendar:</strong> claimed days, today's glowing reward and locked days are all marked.</li><li><strong>Real streaks:</strong> miss a whole day and it's back to day 1 (or turn that off).</li><li><strong>Your timezone:</strong> the day rolls over at midnight in the timezone you set.</li></ul>
 <h2>Features</h2><ul><li>Up to 45 days, each with its own icon, name, items and console commands (%player%)</li><li>Loop back to day 1 after the last day, or stop (configurable)</li><li>Join reminder when a reward is waiting (can be turned off)</li><li>Streak card showing total rewards claimed and time until the next one</li><li>Progress saved to data.yml, so it survives restarts</li><li>Full inventories: leftover items drop at the player&#x27;s feet, never lost</li><li>MiniMessage colours in all names and messages</li></ul>
@@ -47,7 +46,7 @@ days:
   7: {icon: DIAMOND, name: &quot;&lt;aqua&gt;3 Diamonds + $1,000&quot;, items: [{material: DIAMOND, amount: 3}], commands: [&quot;eco give %player% 1000&quot;]}
 </code></pre>
 <h2>Requirements</h2><ul><li>Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)</li><li>Java 21</li><li>Folia is not supported yet</li></ul>
-<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearDaily-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearDaily/config.yml</code> is created.</li><li>Set your timezone and the rewards for each day in the config, then run <code>/daily reload</code>.</li></ol>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/cleardaily.html">ClearDaily setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearDaily-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearDaily/config.yml</code> is created.</li><li>Set your timezone and the rewards for each day in the config, then run <code>/daily reload</code>.</li></ol>
 <h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
 <h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
 <section id="buy"><div class="wrap"><h2>Buy ClearDaily &mdash; $6.99</h2>
