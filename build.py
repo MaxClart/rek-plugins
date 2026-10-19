@@ -25,10 +25,10 @@ def page(path,title,desc,body):
 </body>
 </html>
 '''
-def buy(r):
-    return f'''<section id="buy"><div class="wrap"><h2>Buy ClearCrates &mdash; $9.99</h2>
+def buy(r,name="ClearCrates",price="$9.99"):
+    return f'''<section id="buy"><div class="wrap"><h2>Buy {name} &mdash; {price}</h2>
 <div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
-<p>Send the equivalent of <strong>$9.99</strong> in SOL or USDC on the Solana network to:</p>
+<p>Send the equivalent of <strong>{price}</strong> in SOL or USDC on the Solana network to:</p>
 <code class="addr">{ADDR}</code>
 <p><button class="btn alt" type="button" data-copy>Copy address</button> <a class="btn alt" href="solana:{ADDR}">Open in wallet</a></p>
 <img class="qr" src="{r}assets/solana-qr.png" alt="QR code for the Solana address" width="180" height="180">
@@ -37,7 +37,7 @@ def buy(r):
 <li>Send the payment.</li>
 <li>Copy your transaction ID (signature) from your wallet.</li>
 <li><a href="{ISSUES}">Open a GitHub issue</a> with the transaction ID and your server name.</li>
-<li>You'll be sent the ClearCrates jar once the payment is confirmed.</li></ol>
+<li>You'll be sent the {name} jar once the payment is confirmed.</li></ol>
 <h3>Pay by card</h3><p><a class="btn" href="#buy" data-card-checkout aria-disabled="true">Card checkout coming soon</a></p></div></div></div></section>'''
 feat=["Spin animation (length and sound configurable, or turn it off)","Right-click a key to open, left-click to preview","In-game editor: drag items in, close to save","Item and command rewards, with a %player% placeholder","MiniMessage colours in names and messages","Full inventories: rewards drop at the player's feet, never lost","Tab completion on every command"]
 cfg=html.escape(open("/workspace/products/clearcrates/src/main/resources/config.yml").read())
@@ -48,7 +48,7 @@ index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server o
 <div class="card"><img src="assets/clearcrates-cover.png" alt="ClearCrates cover" width="1200" height="600">
 <h3>ClearCrates</h3><p>Transparent crates for Paper 1.21: exact drop chances shown, fixed preview slots and lightweight animations. No required dependencies.</p>
 <p class="price">$9.99</p><p><a class="btn" href="plugins/clearcrates.html">View plugin</a> <a class="btn alt" href="plugins/clearcrates.html#buy">Buy</a></p></div>
-</div></div></section>
+{{NEWCARDS}}</div></div></section>
 <section id="soon"><div class="wrap"><h2>Coming soon</h2><div class="grid">
 <div class="card soon"><p>More server plugins are in the works.<br>Got a request? <a href="{ISSUES}">Tell us what your server needs</a>.</p></div>
 <div class="card soon"><p>Next plugin under development&hellip;</p></div></div></div></section>'''
@@ -75,10 +75,10 @@ cc=f'''<div class="hero"><div class="wrap"><h1>ClearCrates</h1><p>Crates your pl
 faq=f'''<section><div class="wrap"><h1>FAQ</h1>
 <h2>Refunds</h2><p>Plugins are digital goods, so all sales are normally final once the file has been sent. If something doesn't work on your server, open an issue first and we'll help you fix it. If we genuinely can't get it working on a supported setup, get in touch and we'll sort out a fair solution.</p>
 <h2>Server owner FAQ</h2>
-<h3>Which server software is supported?</h3><p>ClearCrates runs on Paper 1.21 (tested on 1.21.4) with Java 21. Folia isn't supported yet. Spigot and Bukkit aren't tested.</p>
-<h3>Does it need other plugins?</h3><p>No. PlaceholderAPI, ItemsAdder and Nexo are optional hooks.</p>
+<h3>Which server software is supported?</h3><p>Every plugin runs on Paper 1.21 (tested on 1.21.4) with Java 21. Folia isn't supported yet. Spigot and Bukkit aren't tested.</p>
+<h3>Does it need other plugins?</h3><p>No. ClearKits, ClearDaily and ClearAFK have no dependencies. For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks.</p>
 <h3>Can I use it on more than one server?</h3><p>One purchase covers one server network (e.g. a proxy with its backend servers). Please don't redistribute or resell it.</p>
-<h3>How do I pay?</h3><p>Right now with SOL or USDC on Solana. Card checkout is coming soon. See the <a href="plugins/clearcrates.html#buy">buy section</a>.</p>
+<h3>How do I pay?</h3><p>Right now with SOL or USDC on Solana. Card checkout is coming soon. See the Buy section on each plugin page.</p>
 <h3>How fast do I get the plugin?</h3><p>Once you send your transaction ID and the payment is confirmed, the jar is sent to you by hand, so it isn't instant.</p>
 <h3>Where do I report bugs?</h3><p><a href="{ISSUES}">GitHub issues</a>.</p></div></section>'''
 terms=f'''<section><div class="wrap"><h1>Terms</h1>
@@ -87,7 +87,9 @@ terms=f'''<section><div class="wrap"><h1>Terms</h1>
 <li>Crypto payments must be sent on the Solana network to the address shown. Payments sent to the wrong network or address can't be recovered.</li>
 <li>Software is provided as is. Always back up your server before installing plugins.</li>
 <li>{BRAND} isn't affiliated with Mojang or Microsoft. Minecraft is a trademark of its respective owners.</li></ul></div></section>'''
-for p,t,d,b in [("index.html",f"{BRAND} | Plugins for Minecraft server owners","Paper plugins for Minecraft server owners and admins.",index),
+exec(open("plugins_extra.py").read())
+index=index.replace("{NEWCARDS}",NEWCARDS)
+for p,t,d,b in EXTRA+[("index.html",f"{BRAND} | Plugins for Minecraft server owners","Paper plugins for Minecraft server owners and admins.",index),
  ("plugins/clearcrates.html",f"ClearCrates | {BRAND}","ClearCrates: transparent crates for Paper 1.21.",cc),
  ("faq.html",f"FAQ | {BRAND}","Refunds and server owner FAQ.",faq),("terms.html",f"Terms | {BRAND}","Licence and terms.",terms)]:
     open(p,"w").write(page(p,t,d,b))
