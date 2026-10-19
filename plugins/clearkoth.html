@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearKoth | ClearForge Plugins</title>
+<meta name="description" content="ClearKoth: King of the hill events on hills you mark out, with a live boss bar, contested capture, rewards, a wins leaderboard and daily auto-start times. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearKoth</h1><p>Weekly PvP events without the hassle. Mark out a hill, start it or schedule it, and the last player holding it alone wins.</p>
+<p class="price">$8.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearkoth.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearkoth-cover.png" alt="ClearKoth cover" width="1200" height="600">
+<h2>Why ClearKoth</h2><ul><li><strong>Fair captures:</strong> a player alone on the hill counts down the capture time. Two or more players makes it contested and the timer pauses.</li><li><strong>Live boss bar:</strong> shows the hill, the capper and the time left, plus broadcasts on start, progress and win.</li><li><strong>Set and forget:</strong> list daily start times (HH:mm, server local time) and hills start themselves.</li></ul>
+<h2>Features</h2><ul><li>Cuboid hills: select with /koth pos1 and /koth pos2 (or the /koth wand), then /koth create &lt;name&gt;</li><li>Optional reset: progress resets when the capper leaves (reset-on-leave, on by default)</li><li>Rewards: any console commands on win, with %player% and %hill%</li><li>Win counts saved in data.yml, with a /koth top leaderboard</li><li>Optional time limit that ends the event with no winner</li><li>/koth start &lt;name&gt; [seconds], stop, list, delete and reload</li><li>All messages use MiniMessage and can be edited</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/koth list</code>, <code>/koth top</code></td><td><code>clearkoth.use</code> (everyone by default)</td></tr><tr><td><code>/koth pos1</code>, <code>/koth pos2</code>, <code>/koth wand</code>, <code>/koth create &lt;name&gt;</code></td><td><code>clearkoth.admin</code> (ops by default)</td></tr><tr><td><code>/koth start &lt;name&gt; [seconds]</code>, <code>/koth stop</code></td><td><code>clearkoth.admin</code></td></tr><tr><td><code>/koth delete &lt;name&gt;</code>, <code>/koth reload</code></td><td><code>clearkoth.admin</code></td></tr></table></div><p class="muted">PlaceholderAPI is not supported.</p>
+<h2>Dependencies</h2><p>None. PlaceholderAPI is not supported.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with bots: a hill was created with pos1/pos2, a 10-second event was won by a bot standing alone in the zone and the reward commands ran, a second bot entering made it contested and the timer paused until it left, /koth top showed the win count, and a scheduled start time fired on time and was won. The wand, delete, reload, reset-on-leave and the time limit were not bot-tested.</p>
+<h2>Example config</h2><pre><code># ClearKoth. Create a hill with /koth wand (or /koth pos1 + /koth pos2), then /koth create &lt;name&gt;.
+# Seconds a player must hold the hill alone to win (default for /koth start &lt;name&gt;).
+capture-seconds: 180
+# Event ends with no winner after this many seconds (0 = never).
+max-duration: 1800
+# If the capper leaves the hill, reset their progress to 0 (false = keep progress, it just pauses).
+reset-on-leave: true
+# Broadcast progress every N seconds while someone is capturing (0 = off).
+progress-broadcast-every: 30
+# Boss bar colour: PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+bossbar-color: RED
+# Commands run from console when someone wins. %player% and %hill% are replaced.
+rewards:
+  - &quot;give %player% diamond 5&quot;
+  - &quot;xp add %player% 500&quot;
+# Auto-start schedule (server local time, HH:mm). Hill must exist. Leave empty for none.
+schedule:
+#  - time: &quot;18:00&quot;
+#    hill: &quot;spawn&quot;
+#    seconds: 180
+# MiniMessage text. Placeholders: &lt;hill&gt;, &lt;player&gt;, &lt;time&gt;
+messages:
+  prefix: &quot;&lt;dark_gray&gt;[&lt;red&gt;KOTH&lt;/red&gt;]&lt;/dark_gray&gt; &quot;
+  start: &quot;&lt;yellow&gt;King of the hill has started at &lt;gold&gt;&lt;hill&gt;&lt;/gold&gt;! Hold it for &lt;time&gt;s to win.&quot;
+  progress: &quot;&lt;gold&gt;&lt;player&gt;&lt;/gold&gt; &lt;yellow&gt;is capturing &lt;hill&gt;: &lt;time&gt;s left!&quot;
+  win: &quot;&lt;gold&gt;&lt;player&gt;&lt;/gold&gt; &lt;green&gt;has captured &lt;hill&gt; and won!&quot;
+  stopped: &quot;&lt;red&gt;The KOTH at &lt;hill&gt; has ended with no winner.&quot;
+  bossbar-idle: &quot;&lt;red&gt;&lt;hill&gt;&lt;/red&gt; &lt;gray&gt;- nobody capturing&quot;
+  bossbar-capping: &quot;&lt;red&gt;&lt;hill&gt;&lt;/red&gt; &lt;gray&gt;- &lt;gold&gt;&lt;player&gt;&lt;/gold&gt; &lt;gray&gt;capturing - &lt;white&gt;&lt;time&gt;s&lt;/white&gt; left&quot;
+  bossbar-contested: &quot;&lt;red&gt;&lt;hill&gt;&lt;/red&gt; &lt;gray&gt;- &lt;dark_red&gt;CONTESTED&lt;/dark_red&gt; &lt;gray&gt;(&lt;player&gt;, &lt;time&gt;s left)&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearkoth.html">ClearKoth setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearKoth-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearKoth/config.yml</code> is created.</li><li>Stand at one corner of your hill and run <code>/koth pos1</code>, then at the opposite corner run <code>/koth pos2</code>. Include some height.</li><li>Run <code>/koth create &lt;name&gt;</code>, then <code>/koth start &lt;name&gt; [seconds]</code>.</li><li>Edit capture time, rewards and schedule in the config, then run <code>/koth reload</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearKoth &mdash; $8.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearKoth download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearkoth" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

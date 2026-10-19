@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearClans | ClearForge Plugins</title>
+<meta name="description" content="ClearClans: Clans with owner, officer and member roles, private clan chat, a shared clan home, per-clan friendly fire and a leaderboard. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearClans</h1><p>Clans your players can run themselves. They create, invite and manage their own clans, with no other plugins needed.</p>
+<p class="price">$8.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearclans.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearclans-cover.png" alt="ClearClans cover" width="1200" height="600">
+<h2>Why ClearClans</h2><ul><li><strong>Roles:</strong> owner, officer and member, with /clan promote and /clan demote.</li><li><strong>Clan chat and home:</strong> private chat by command or toggle, plus a shared /clan home with a don't-move delay.</li><li><strong>Friendly fire:</strong> off by default, with a /clan ff toggle per clan.</li></ul>
+<h2>Features</h2><ul><li>/clan create, invite (clickable accept/deny), accept, deny, leave, kick, disband</li><li>/clan info and a /clan top leaderboard by member count</li><li>Optional clan name in public chat (off by default), added in front of your existing chat format</li><li>Clan bank (deposit and withdraw) when Vault and an economy plugin are installed</li><li>Commented config.yml, MiniMessage text, data saved in data.yml</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/clan create|invite|accept|deny|leave|kick|promote|demote|disband</code></td><td><code>clearclans.use</code> (everyone by default)</td></tr><tr><td><code>/clan chat</code>, <code>/clan sethome</code>, <code>/clan home</code>, <code>/clan ff</code>, <code>/clan info</code>, <code>/clan top</code></td><td><code>clearclans.use</code></td></tr><tr><td><code>/clan bank deposit|withdraw &lt;amount&gt;</code></td><td><code>clearclans.use</code> (needs Vault + an economy plugin)</td></tr><tr><td><code>/clan reload</code></td><td><code>clearclans.admin</code> (ops by default)</td></tr></table></div>
+<h2>Dependencies</h2><p>None. Vault and an economy plugin are only needed for the clan bank.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with two bots: creating a clan, invite and accept, /clan info, clan chat by command and toggle, /clan sethome and /clan home, friendly fire off and on, /clan top, and the optional chat tag. The clan bank and /clan top bank were not tested because no economy plugin was installed. Kick, promote and demote were not bot-tested.</p>
+<h2>Example config</h2><pre><code># ClearClans. Data is kept in data.yml.
+# Clan names: allowed length.
+name-min: 3
+name-max: 16
+max-members: 20
+# Seconds before an invite expires.
+invite-expire: 120
+# Seconds to stand still before /clan home teleports (0 = instant).
+home-delay: 3
+# Default friendly fire for new clans (owners/officers can change it with /clan ff).
+friendly-fire-default: false
+# Put the clan name in front of public chat. Off by default so it does not clash with chat plugins
+# such as ClearTags. When on, it wraps the existing chat format instead of replacing it.
+chat-tag:
+  enabled: false
+  format: &quot;&lt;dark_gray&gt;[&lt;aqua&gt;&lt;clan&gt;&lt;/aqua&gt;]&lt;/dark_gray&gt; &quot;
+# Clan bank needs Vault and an economy plugin. Without them, /clan bank is disabled.
+bank-enabled: true
+# MiniMessage text.
+messages:
+  prefix: &quot;&lt;dark_gray&gt;[&lt;aqua&gt;Clans&lt;/aqua&gt;]&lt;/dark_gray&gt; &quot;
+  clan-chat: &quot;&lt;aqua&gt;[Clan]&lt;/aqua&gt; &lt;gray&gt;&lt;role&gt;&lt;/gray&gt; &lt;white&gt;&lt;player&gt;&lt;/white&gt;&lt;gray&gt;:&lt;/gray&gt; &lt;message&gt;&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li><li>Vault and an economy plugin (only for the clan bank)</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearclans.html">ClearClans setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearClans-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearClans/config.yml</code> is created.</li><li>Edit the member limit, home delay, friendly fire default and chat tag in the config, then run <code>/clan reload</code>.</li><li>Optional: install Vault and an economy plugin to enable the clan bank.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearClans &mdash; $8.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearClans download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearclans" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

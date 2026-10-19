@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearStaff | ClearForge Plugins</title>
+<meta name="description" content="ClearStaff: The everyday moderation toolkit: vanish, freeze, invsee and endersee, staff chat, and a one-click punishment menu with logged history. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearStaff</h1><p>Moderate from one menu. Everything a small staff team needs, with no other plugins required.</p>
+<p class="price">$9.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearstaff.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearstaff-cover.png" alt="ClearStaff cover" width="1200" height="600">
+<h2>Why ClearStaff</h2><ul><li><strong>One-click punishments:</strong> /punish opens a menu of your own warn, mute, kick, temp ban and ban presets.</li><li><strong>Logged history:</strong> every punishment goes to history.yml, and /history shows it.</li><li><strong>Uses the vanilla ban list:</strong> temp bans and bans have an expiry and /pardon works as normal.</li></ul>
+<h2>Features</h2><ul><li>/vanish hides you from the player list and the world, with optional fake quit and join messages</li><li>/freeze blocks movement and commands (with a whitelist) and damage, and tells staff if a frozen player logs out</li><li>/invsee and /endersee, read-only unless you have clearstaff.invsee.edit</li><li>Staff chat: /sc &lt;message&gt;, or /sc on its own to toggle</li><li>Mutes handled by the plugin, with /unmute</li><li>Separate permissions for every tool, commented config.yml, MiniMessage text</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/vanish</code> (<code>/v</code>)</td><td><code>clearstaff.vanish</code>; see vanished staff with <code>clearstaff.vanish.see</code></td></tr><tr><td><code>/freeze &lt;player&gt;</code></td><td><code>clearstaff.freeze</code></td></tr><tr><td><code>/invsee</code>, <code>/endersee &lt;player&gt;</code></td><td><code>clearstaff.invsee</code> (edit: <code>clearstaff.invsee.edit</code>)</td></tr><tr><td><code>/sc [message]</code></td><td><code>clearstaff.chat</code></td></tr><tr><td><code>/punish</code>, <code>/unmute &lt;player&gt;</code></td><td><code>clearstaff.punish</code></td></tr><tr><td><code>/history &lt;player&gt;</code></td><td><code>clearstaff.history</code></td></tr><tr><td><code>/clearstaff reload</code></td><td><code>clearstaff.admin</code></td></tr></table></div><p class="muted">All permissions default to op. <code>clearstaff.*</code> gives everything.</p>
+<h2>Dependencies</h2><p>None.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with two bots: vanish and unvanish, freeze stopping movement and commands, /invsee and /endersee, staff chat by command and toggle, the punish menu showing all five presets, the mute preset, the 1-day temp ban (kick, rejoin blocked, expiry shown), /pardon and /unmute, and /history. Read-only mode, damage blocking while frozen, the warn, kick and permanent ban presets, and mute expiry were not bot-tested.</p>
+<h2>Example config</h2><pre><code># ClearStaff. All text is MiniMessage. Punishments are logged to history.yml.
+prefix: &quot;&lt;dark_gray&gt;[&lt;light_purple&gt;Staff&lt;/light_purple&gt;]&lt;/dark_gray&gt; &quot;
+vanish:
+  # Broadcast a fake quit message when you vanish and a fake join message when you reappear.
+  fake-messages: true
+  fake-quit: &quot;&lt;yellow&gt;&lt;player&gt; left the game&quot;
+  fake-join: &quot;&lt;yellow&gt;&lt;player&gt; joined the game&quot;
+freeze:
+  # Seconds between reminder messages to a frozen player.
+  message-every: 5
+  message: &quot;&lt;red&gt;&lt;bold&gt;You are frozen.&lt;/bold&gt; Do not log out. Wait for staff instructions.&quot;
+  # Commands a frozen player may still use (without the slash).
+  allowed-commands: [msg, r, tell, helpop]
+staff-chat:
+  format: &quot;&lt;light_purple&gt;[SC]&lt;/light_purple&gt; &lt;white&gt;&lt;player&gt;&lt;/white&gt;&lt;gray&gt;:&lt;/gray&gt; &lt;message&gt;&quot;
+mute-message: &quot;&lt;red&gt;You are muted&lt;expiry&gt;. Reason: &lt;reason&gt;&quot;
+# Punishment menu presets, shown in this order in /punish &lt;player&gt;.
+# type: warn, mute, kick, tempban or ban. duration (mute/tempban): e.g. 30m, 1h, 1d, 7d.
+presets:
+  warn:
+    type: warn
+    icon: PAPER
+    name: &quot;&lt;yellow&gt;Warn&quot;
+    reason: &quot;Breaking the rules&quot;
+  mute1h:
+    type: mute
+    icon: BOOK
+    name: &quot;&lt;gold&gt;Mute 1 hour&quot;
+    duration: 1h
+    reason: &quot;Chat abuse&quot;
+  kick:
+    type: kick
+    icon: LEATHER_BOOTS
+    name: &quot;&lt;gold&gt;Kick&quot;
+    reason: &quot;Please read the rules&quot;
+  tempban1d:
+    type: tempban
+    icon: IRON_SWORD
+    name: &quot;&lt;red&gt;Temp ban 1 day&quot;
+    duration: 1d
+    reason: &quot;Griefing&quot;
+  ban:
+    type: ban
+    icon: BARRIER
+    name: &quot;&lt;dark_red&gt;Permanent ban&quot;
+    reason: &quot;Cheating&quot;
+messages:
+  warned: &quot;&lt;red&gt;You have been warned: &lt;reason&gt;&quot;
+  broadcast: &quot;&lt;light_purple&gt;&lt;staff&gt;&lt;/light_purple&gt; &lt;gray&gt;gave&lt;/gray&gt; &lt;white&gt;&lt;player&gt;&lt;/white&gt; &lt;gray&gt;a&lt;/gray&gt; &lt;white&gt;&lt;action&gt;&lt;/white&gt; &lt;gray&gt;(&lt;reason&gt;)&lt;/gray&gt;&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearstaff.html">ClearStaff setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearStaff-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearStaff/config.yml</code> is created.</li><li>Edit the freeze whitelist and punishment presets in the config, then run <code>/clearstaff reload</code>.</li><li>Give your staff the permissions they need (all default to op).</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearStaff &mdash; $9.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearStaff download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearstaff" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
