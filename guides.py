@@ -198,8 +198,38 @@ streaks:
 <h2>4. Permissions</h2><ul><li><code>clearvotes.use</code>: vote links and stats. Everyone by default.</li><li><code>clearvotes.admin</code>: test, reset and reload. Ops by default, e.g. {LP("clearvotes.admin")}.</li></ul>
 <h2>Common questions</h2><h3>What if a player votes while offline?</h3><p>Their rewards are queued and given when they next join.</p>
 <h3>Does it work without NuVotifier?</h3><p>Only <code>/votes test</code> works. Real votes from sites need NuVotifier.</p>'''))
+GUIDES.append(guide("clearkoth","ClearKoth","$8.99","Mark out a hill, run king of the hill events and schedule them to start by themselves.",f'''
+<h2>2. Mark out a hill</h2><ol><li>Stand at one corner of your hill and type {C("/koth pos1")}.</li><li>Go to the opposite corner and type {C("/koth pos2")}. Include some height so players standing on it are inside.</li><li>Or use {C("/koth wand")}: left-click a block for pos1, right-click for pos2.</li><li>Save it with {C("/koth create spawn")}.</li></ol>
+<h2>3. Start an event</h2><p>{C("/koth start spawn")} uses the default capture time, or {C("/koth start spawn 120")} for 120 seconds. A player alone on the hill counts down. If a second player steps on, it's contested and the timer pauses. {C("/koth stop")} ends it early.</p>
+<h2>4. Config</h2>{Y("""
+capture-seconds: 180
+max-duration: 1800
+reset-on-leave: true
+rewards:
+  - "give %player% diamond 5"
+schedule:
+  - time: "18:00"
+    hill: "spawn"
+    seconds: 180
+""")}
+<ul><li><code>capture-seconds</code>: how long a player must hold the hill alone.</li><li><code>max-duration</code>: the event ends with no winner after this many seconds (0 = never).</li><li><code>reset-on-leave</code>: progress goes back to 0 when the capper leaves.</li><li><code>rewards</code>: console commands, with <code>%player%</code> and <code>%hill%</code>.</li><li><code>schedule</code>: daily start times in server local time. The hill must exist.</li></ul>
+<p>Save, then run {C("/koth reload")}. Hills and win counts are kept in <code>plugins/ClearKoth/data.yml</code>.</p>
+<h2>5. Permissions</h2><ul><li><code>clearkoth.use</code>: <code>/koth list</code> and <code>/koth top</code>. Everyone by default.</li><li><code>clearkoth.admin</code>: everything else. Ops by default, e.g. {LP("clearkoth.admin")}.</li></ul>
+<h2>Common questions</h2><h3>Does it support PlaceholderAPI?</h3><p>No, PlaceholderAPI is not supported.</p>
+<h3>What was tested?</h3><p>Creating a hill with pos1/pos2, winning an event, contested pausing, <code>/koth top</code> and a scheduled start were tested with bots on Paper 1.21.4. The wand, delete, reload, reset-on-leave and the time limit were not bot-tested.</p>'''))
+GUIDES.append(guide("clearclans","ClearClans","$8.99","Let players create and run their own clans, with roles, clan chat, a home and friendly fire.",f'''
+<h2>2. Your first clan</h2><ol><li>{C("/clan create Wolves")} creates a clan with you as owner.</li><li>{C("/clan invite Steve")} sends a clickable invite. Steve runs {C("/clan accept")} (or {C("/clan deny")}).</li><li>{C("/clan info")} shows members and roles. {C("/clan promote Steve")} and {C("/clan demote Steve")} change roles.</li></ol>
+<h2>3. Chat, home and friendly fire</h2><ul><li>{C("/clan chat hello")} sends one message to the clan. {C("/clan chat")} on its own toggles all your messages into clan chat.</li><li>{C("/clan sethome")} then {C("/clan home")}. Players must stand still for the configured delay.</li><li>{C("/clan ff")} toggles friendly fire for your clan. It's off by default.</li></ul>
+<h2>4. Config</h2><p>Edit <code>plugins/ClearClans/config.yml</code> (member limit, home delay, friendly fire default, chat tag, messages), then run {C("/clan reload")}. Data is kept in <code>plugins/ClearClans/data.yml</code>.</p>
+<h2>5. Optional clan bank</h2><p>Install Vault and an economy plugin to enable {C("/clan bank deposit 100")}, {C("/clan bank withdraw 100")} and {C("/clan top bank")}.</p>
+<h2>Common questions</h2><h3>What was tested?</h3><p>Create, invite, accept, info, clan chat, home, friendly fire, /clan top and the chat tag were tested with two bots on Paper 1.21.4. The clan bank was not tested (no economy plugin was installed), and kick, promote and demote were not bot-tested.</p>'''))
+GUIDES.append(guide("clearstaff","ClearStaff","$9.99","Set up vanish, freeze, invsee, staff chat and the punishment menu for your staff team.",f'''
+<h2>2. Give staff permissions</h2><p>All permissions default to op. For non-op staff, give them what they need, e.g. {LP("clearstaff.*","Steve")} for everything, or single nodes like <code>clearstaff.vanish</code>, <code>clearstaff.freeze</code>, <code>clearstaff.punish</code>.</p>
+<h2>3. Everyday tools</h2><ul><li>{C("/vanish")} (or {C("/v")}) hides you. Staff with <code>clearstaff.vanish.see</code> still see you.</li><li>{C("/freeze Steve")} stops Steve moving and using commands (except the whitelist).</li><li>{C("/invsee Steve")} and {C("/endersee Steve")} are read-only unless you have <code>clearstaff.invsee.edit</code>.</li><li>{C("/sc hello")} for staff chat, or {C("/sc")} to toggle.</li></ul>
+<h2>4. Punishments</h2><p>{C("/punish Steve")} opens a menu of your presets (warn, mute, kick, temp ban, ban). Edit durations, icons and reasons in <code>plugins/ClearStaff/config.yml</code>, then {C("/clearstaff reload")}. Bans use the server ban list, so {C("/pardon Steve")} removes them. {C("/unmute Steve")} lifts a mute and {C("/history Steve")} shows past punishments.</p>
+<h2>Common questions</h2><h3>What was tested?</h3><p>Vanish, freeze (movement and commands), invsee, endersee, staff chat, the punish menu, the mute and 1-day temp ban presets, /pardon, /unmute and /history were tested with two bots on Paper 1.21.4. Read-only mode, damage blocking while frozen, the warn, kick and permanent ban presets, and mute expiry were not bot-tested.</p>'''))
 
-PL=[("clearcrates","ClearCrates","Crates, keys, rewards and chances."),("clearkits","ClearKits","Starter, daily and VIP kits with cooldowns."),("cleardaily","ClearDaily","Daily rewards calendar, timezone and streaks."),("clearafk","ClearAFK","AFK timer, kicks and tab tag."),("cleartags","ClearTags","Chat tags, format and unlock permissions."),("clearvotes","ClearVotes","NuVotifier, rewards, milestones and streaks.")]
+PL=[("clearcrates","ClearCrates","Crates, keys, rewards and chances."),("clearkits","ClearKits","Starter, daily and VIP kits with cooldowns."),("cleardaily","ClearDaily","Daily rewards calendar, timezone and streaks."),("clearafk","ClearAFK","AFK timer, kicks and tab tag."),("cleartags","ClearTags","Chat tags, format and unlock permissions."),("clearvotes","ClearVotes","NuVotifier, rewards, milestones and streaks."),("clearkoth","ClearKoth","Hills, boss bar, rewards and schedules."),("clearclans","ClearClans","Clans, roles, chat, home and bank."),("clearstaff","ClearStaff","Vanish, freeze, invsee and punishments.")]
 cards="".join(f'<a class="card" href="{s}.html"><h3>{n}</h3><p>{d}</p></a>' for s,n,d in PL)
 GUIDES.append(("guides/index.html",f"Guides | {BRAND}","Setup guides for ClearForge plugins.",f'''<div class="hero"><div class="wrap"><h1>Guides</h1><p>Step-by-step setup for every ClearForge plugin. New here? Start with getting started.</p>
 <p><a class="btn" href="getting-started.html">Getting started</a></p></div></div>

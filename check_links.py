@@ -22,8 +22,8 @@ for root,_,fs in os.walk("."):
 for p,x in pages.items():
     for e in x.err+([f"unclosed {x.stack}"] if x.stack else []):print(p,"HTML:",e);bad+=1
     for r in x.refs:
-        if re.match(r"(https?:|mailto:|solana:)",r):continue
-        path,_,frag=r.partition("#")
+        if re.match(r"(https?:|mailto:)",r):continue
+        path,_,frag=r.partition("#");path=path.split("?")[0]
         tgt=os.path.normpath(os.path.join(os.path.dirname(p),path)) if path else p
         if not os.path.exists(tgt):print(p,"MISSING",r);bad+=1;continue
         if frag and frag not in pages.get(tgt,P()).ids:print(p,"BAD ANCHOR",r);bad+=1

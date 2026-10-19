@@ -1,7 +1,6 @@
 # Generates the HTML pages with a shared header/footer. Run: python3 build.py
 import html
 BRAND="ClearForge Plugins"
-ADDR="EKNpkRpGss6Y3NdopdDRs91EiTemEVGNUFXR3Bzif2AN"
 ISSUES="https://github.com/MaxClart/Clearcrates/issues"
 def page(path,title,desc,body):
     r="../" if "/" in path else ""
@@ -12,11 +11,13 @@ def page(path,title,desc,body):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="stylesheet" href="{r}css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="{r}css/style.css?v=7">
 <script src="{r}js/main.js" defer></script>
 </head>
 <body>
-<header><nav><a class="brand" href="{r}index.html">Clear<span>Forge</span> Plugins</a><a href="{r}index.html#plugins">Plugins</a><a href="{r}guides/index.html">Guides</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<header><nav><a class="brand" href="{r}index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="{r}index.html#plugins">Plugins</a><a href="{r}guides/index.html">Guides</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
 <main>
 {body}
 </main>
@@ -30,19 +31,7 @@ def buy(r,name="ClearCrates",price="$9.99"):
     return f'''<section id="buy"><div class="wrap"><h2>Buy {name} &mdash; {price}</h2>
 <div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your {name} download is delivered automatically as soon as the payment is confirmed.</p>
 <p><a class="btn" href="{sell(name)}" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
-<h3>Prefer SOL/USDC? Pay manually</h3>
-<p class="muted">Manual payments are checked by hand and may take longer.</p>
-<div class="grid"><div class="card"><h3>Pay with crypto (SOL or USDC on Solana)</h3>
-<p>Send the equivalent of <strong>{price}</strong> in SOL or USDC on the Solana network to:</p>
-<code class="addr">{ADDR}</code>
-<p><button class="btn alt" type="button" data-copy>Copy address</button> <a class="btn alt" href="solana:{ADDR}">Open in wallet</a></p>
-<img class="qr" src="{r}assets/solana-qr.png" alt="QR code for the Solana address" width="180" height="180">
-<p class="muted">Only send on the Solana network. Transfers can't be reversed, so double-check the address.</p></div>
-<div class="card"><h3>Get your download</h3><ol>
-<li>Send the payment.</li>
-<li>Copy your transaction ID (signature) from your wallet.</li>
-<li><a href="{ISSUES}">Open a GitHub issue</a> with the transaction ID and your server name.</li>
-<li>You'll be sent the {name} jar once the payment is confirmed.</li></ol></div></div></div></section>'''
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>'''
 feat=["Spin animation (length and sound configurable, or turn it off)","Right-click a key to open, left-click to preview","In-game editor: drag items in, close to save","Item and command rewards, with a %player% placeholder","MiniMessage colours in names and messages","Full inventories: rewards drop at the player's feet, never lost","Tab completion on every command"]
 cfg=html.escape(open("/workspace/products/clearcrates/src/main/resources/config.yml").read())
 index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server owners</h1>
@@ -80,17 +69,17 @@ faq=f'''<section><div class="wrap"><h1>FAQ</h1>
 <h2>Refunds</h2><p>Plugins are digital goods, so all sales are normally final once the file has been sent. If something doesn't work on your server, open an issue first and we'll help you fix it. If we genuinely can't get it working on a supported setup, get in touch and we'll sort out a fair solution.</p>
 <h2>Server owner FAQ</h2>
 <h3>Which server software is supported?</h3><p>Every plugin runs on Paper 1.21 (tested on 1.21.4) with Java 21. Folia isn't supported yet. Spigot and Bukkit aren't tested.</p>
-<h3>Does it need other plugins?</h3><p>ClearKits, ClearDaily, ClearAFK and ClearTags have no dependencies (ClearTags works best with a permissions plugin such as LuckPerms). For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks. ClearVotes needs NuVotifier (free) to receive votes from vote sites.</p>
-<h3>How many plugins are there?</h3><p>Six: ClearCrates, ClearKits, ClearDaily, ClearAFK, ClearTags and ClearVotes.</p>
+<h3>Does it need other plugins?</h3><p>ClearKits, ClearDaily, ClearAFK and ClearTags have no dependencies (ClearTags works best with a permissions plugin such as LuckPerms). For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks. ClearVotes needs NuVotifier (free) to receive votes from vote sites. ClearKoth and ClearStaff have no dependencies. ClearClans needs Vault and an economy plugin only for its clan bank.</p>
+<h3>How many plugins are there?</h3><p>Nine: ClearCrates, ClearKits, ClearDaily, ClearAFK, ClearTags, ClearVotes, ClearKoth, ClearClans and ClearStaff.</p>
 <h3>Are the plugins made with AI?</h3><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p>
 <h3>Can I use it on more than one server?</h3><p>One purchase covers one server network (e.g. a proxy with its backend servers). Please don't redistribute or resell it.</p>
-<h3>How do I pay?</h3><p>With Bitcoin through Sell.app, which gives you an instant automatic download, or with SOL or USDC on Solana manually (checked by hand, so it may take longer). See the Buy section on each plugin page.</p>
-<h3>How fast do I get the plugin?</h3><p>Once you send your transaction ID and the payment is confirmed, the jar is sent to you by hand, so it isn't instant.</p>
+<h3>How do I pay?</h3><p>With Bitcoin through Sell.app, which gives you an instant automatic download. See the Buy section on each plugin page.</p>
+<h3>How fast do I get the plugin?</h3><p>Instantly. As soon as Sell.app confirms your Bitcoin payment, the download is delivered automatically.</p>
 <h3>Where do I report bugs?</h3><p><a href="{ISSUES}">GitHub issues</a>.</p></div></section>'''
 terms=f'''<section><div class="wrap"><h1>Terms</h1>
 <ul><li>Each purchase gives one licence for one server network. You may not redistribute, resell or reupload the plugin.</li>
 <li>Plugins are digital goods. See the <a href="faq.html">refund policy</a>.</li>
-<li>Crypto payments must be sent on the Solana network to the address shown. Payments sent to the wrong network or address can't be recovered.</li>
+<li>Payments are made in Bitcoin through Sell.app. Crypto transfers can't be reversed, so check the amount before you pay.</li>
 <li>Software is provided as is. Always back up your server before installing plugins.</li>
 <li>{BRAND} isn't affiliated with Mojang or Microsoft. Minecraft is a trademark of its respective owners.</li></ul></div></section>'''
 exec(open("plugins_extra.py").read())
