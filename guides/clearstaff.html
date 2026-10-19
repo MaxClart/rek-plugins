@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearStaff setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearStaff on Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearStaff</p><h1>ClearStaff setup guide</h1><p>Set up vanish, freeze, invsee, staff chat and the punishment menu for your staff team.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearstaff" target="_blank" rel="noopener">Buy ClearStaff &mdash; $9.99</a> <a class="btn alt" href="../plugins/clearstaff.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearStaff-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearStaff/config.yml</code>.</p>
+
+<h2>2. Give staff permissions</h2><p>All permissions default to op. For non-op staff, give them what they need, e.g. <code>/lp user Steve permission set clearstaff.* true</code> for everything, or single nodes like <code>clearstaff.vanish</code>, <code>clearstaff.freeze</code>, <code>clearstaff.punish</code>.</p>
+<h2>3. Everyday tools</h2><ul><li><code>/vanish</code> (or <code>/v</code>) hides you. Staff with <code>clearstaff.vanish.see</code> still see you.</li><li><code>/freeze Steve</code> stops Steve moving and using commands (except the whitelist).</li><li><code>/invsee Steve</code> and <code>/endersee Steve</code> are read-only unless you have <code>clearstaff.invsee.edit</code>.</li><li><code>/sc hello</code> for staff chat, or <code>/sc</code> to toggle.</li></ul>
+<h2>4. Punishments</h2><p><code>/punish Steve</code> opens a menu of your presets (warn, mute, kick, temp ban, ban). Edit durations, icons and reasons in <code>plugins/ClearStaff/config.yml</code>, then <code>/clearstaff reload</code>. Bans use the server ban list, so <code>/pardon Steve</code> removes them. <code>/unmute Steve</code> lifts a mute and <code>/history Steve</code> shows past punishments.</p>
+<h2>Common questions</h2><h3>What was tested?</h3><p>Vanish, freeze (movement and commands), invsee, endersee, staff chat, the punish menu, the mute and 1-day temp ban presets, /pardon, /unmute and /history were tested with two bots on Paper 1.21.4. Read-only mode, damage blocking while frozen, the warn, kick and permanent ban presets, and mute expiry were not bot-tested.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearStaff is $9.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearstaff" target="_blank" rel="noopener">Buy ClearStaff</a> <a class="btn alt" href="../plugins/clearstaff.html">ClearStaff plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
