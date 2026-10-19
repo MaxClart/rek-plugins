@@ -65,7 +65,7 @@ for x in P:
     reqs="".join(f"<li>{html.escape(r)}</li>" for r in x.get("reqs",["Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)","Java 21","Folia is not supported yet"]))
     steps="".join(f"<li>{t}</li>" for t in x["steps"])
     body=f'''<div class="hero"><div class="wrap"><h1>{n}</h1><p>{html.escape(x["lead"])}</p>
-<p class="price">{x["price"]}</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<p class="price">{x["price"]}</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/{s}.html">Setup guide</a></p></div></div>
 <section><div class="wrap"><img src="../assets/{s}-cover.png" alt="{n} cover" width="1200" height="600">
 <h2>Why {n}</h2><ul>{why}</ul>
 <h2>Features</h2><ul>{fl}</ul>
@@ -74,7 +74,7 @@ for x in P:
 <h2>Dependencies</h2><p>{x.get("deps","None.")}</p>{tst}
 <h2>Example config</h2><pre><code>{cfgt}</code></pre>
 <h2>Requirements</h2><ul>{reqs}</ul>
-<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>{x["jar"]}</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/{n}/config.yml</code> is created.</li>{steps}</ol>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/{s}.html">{n} setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>{x["jar"]}</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/{n}/config.yml</code> is created.</li>{steps}</ol>
 <h2>Support</h2><p>Bugs or questions: <a href="{ISSUES}">open an issue on GitHub</a>.</p>
 <h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
 {buy("../",n,x["price"])}'''

@@ -16,8 +16,7 @@ def page(path,title,desc,body):
 <script src="{r}js/main.js" defer></script>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="{r}index.html"><span></span>{BRAND}</a>
-<nav><a href="{r}index.html#plugins">Plugins</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></div></header>
+<header><nav><a class="brand" href="{r}index.html">Clear<span>Forge</span> Plugins</a><a href="{r}index.html#plugins">Plugins</a><a href="{r}guides/index.html">Guides</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
 <main>
 {body}
 </main>
@@ -48,7 +47,7 @@ feat=["Spin animation (length and sound configurable, or turn it off)","Right-cl
 cfg=html.escape(open("/workspace/products/clearcrates/src/main/resources/config.yml").read())
 index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server owners</h1>
 <p>Lightweight, honest Paper plugins built for people who run servers. Clear configs, no bloat, real support.</p>
-<p><a class="btn" href="#plugins">Browse plugins</a> <a class="btn alt" href="faq.html">Server owner FAQ</a></p></div></div>
+<p><a class="btn" href="#plugins">Browse plugins</a> <a class="btn alt" href="guides/index.html">Setup guides</a> <a class="btn alt" href="faq.html">Server owner FAQ</a></p></div></div>
 <section id="plugins"><div class="wrap"><h2>Plugin catalogue</h2><div class="grid">
 <div class="card"><img src="assets/clearcrates-cover.png" alt="ClearCrates cover" width="1200" height="600">
 <h3>ClearCrates</h3><p>Transparent crates for Paper 1.21: exact drop chances shown, fixed preview slots and lightweight animations. No required dependencies.</p>
@@ -59,7 +58,7 @@ index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server o
 <div class="card soon"><p>Next plugin under development&hellip;</p></div></div></div></section>'''
 fl="".join(f"<li>{html.escape(f)}</li>" for f in feat)
 cc=f'''<div class="hero"><div class="wrap"><h1>ClearCrates</h1><p>Crates your players can trust. Every reward shows its exact drop chance, items always sit where you put them, and openings won't lag your server.</p>
-<p class="price">$9.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="#install">Install guide</a></p></div></div>
+<p class="price">$9.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearcrates.html">Setup guide</a></p></div></div>
 <section><div class="wrap"><img src="../assets/clearcrates-cover.png" alt="ClearCrates cover" width="1200" height="600">
 <h2>Why ClearCrates</h2><ul><li><strong>Chances shown:</strong> the preview lists each reward's real percentage, worked out from your weights.</li>
 <li><strong>Fixed slots:</strong> you choose every slot, nothing gets shuffled at random.</li>
@@ -73,7 +72,7 @@ cc=f'''<div class="hero"><div class="wrap"><h1>ClearCrates</h1><p>Crates your pl
 <h2>Optional hooks</h2><p>PlaceholderAPI (<code>%clearcrates_keys_&lt;crate&gt;%</code>), ItemsAdder and Nexo items. None are required.</p>
 <h2>Example config</h2><p class="muted">Chances are weights, so they don't need to add up to 100.</p><pre><code>{cfg}</code></pre>
 <h2>Requirements</h2><ul><li>Paper 1.21 (tested on 1.21.4; other 1.21.x Paper builds are expected to work)</li><li>Java 21</li><li>Folia is not supported yet</li></ul>
-<h2 id="install">Installation</h2><ol><li>Stop your server.</li><li>Put <code>ClearCrates-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearCrates/config.yml</code> is created.</li><li>Edit the config or use <code>/crate edit &lt;crate&gt;</code> in game, then run <code>/crate reload</code>.</li><li>Give keys with <code>/crate give &lt;player&gt; &lt;crate&gt; [amount]</code>.</li></ol>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearcrates.html">ClearCrates setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearCrates-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearCrates/config.yml</code> is created.</li><li>Edit the config or use <code>/crate edit &lt;crate&gt;</code> in game, then run <code>/crate reload</code>.</li><li>Give keys with <code>/crate give &lt;player&gt; &lt;crate&gt; [amount]</code>.</li></ol>
 <h2>Support</h2><p>Bugs or questions: <a href="{ISSUES}">ClearCrates issues on GitHub</a>.</p>
 <h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
 {buy("../")}'''
@@ -95,8 +94,9 @@ terms=f'''<section><div class="wrap"><h1>Terms</h1>
 <li>Software is provided as is. Always back up your server before installing plugins.</li>
 <li>{BRAND} isn't affiliated with Mojang or Microsoft. Minecraft is a trademark of its respective owners.</li></ul></div></section>'''
 exec(open("plugins_extra.py").read())
+exec(open("guides.py").read())
 index=index.replace("{NEWCARDS}",NEWCARDS)
-for p,t,d,b in EXTRA+[("index.html",f"{BRAND} | Plugins for Minecraft server owners","Paper plugins for Minecraft server owners and admins.",index),
+for p,t,d,b in EXTRA+GUIDES+[("index.html",f"{BRAND} | Plugins for Minecraft server owners","Paper plugins for Minecraft server owners and admins.",index),
  ("plugins/clearcrates.html",f"ClearCrates | {BRAND}","ClearCrates: transparent crates for Paper 1.21.",cc),
  ("faq.html",f"FAQ | {BRAND}","Refunds and server owner FAQ.",faq),("terms.html",f"Terms | {BRAND}","Licence and terms.",terms)]:
     open(p,"w").write(page(p,t,d,b))
