@@ -68,7 +68,7 @@ cc=f'''<div class="hero"><div class="wrap"><h1>ClearCrates</h1><p>Crates your pl
 <h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
 {buy("../")}'''
 faq=f'''<section><div class="wrap"><h1>FAQ</h1>
-<h2>Refunds</h2><p>Plugins are digital goods, so all sales are normally final once the file has been sent. If something doesn't work on your server, open an issue first and we'll help you fix it. If we genuinely can't get it working on a supported setup, get in touch and we'll sort out a fair solution.</p>
+<h2>Refunds</h2><p>Plugins are digital goods, so all sales are final and there are no refunds once the file has been sent. If something doesn't work on your server, contact us through Sell.app on your order and we'll help you get it running.</p>
 <h2>Server owner FAQ</h2>
 <h3>Which server software is supported?</h3><p>Every plugin runs on Paper 1.21 (tested on 1.21.4) with Java 21. Folia isn't supported yet. Spigot and Bukkit aren't tested.</p>
 <h3>Does it need other plugins?</h3><p>ClearKits, ClearDaily, ClearAFK and ClearTags have no dependencies (ClearTags works best with a permissions plugin such as LuckPerms). For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks. ClearVotes needs NuVotifier (free) to receive votes from vote sites. ClearKoth, ClearStaff, ClearChat, ClearBosses, ClearDialogues and ClearGems have no dependencies (ClearDialogues has no Citizens support). ClearClans needs Vault and an economy plugin only for its clan bank, and ClearSpawners only for Sell all. ClearOrders and ClearAuctions need Vault and an economy plugin (e.g. EssentialsX) to run.</p>
