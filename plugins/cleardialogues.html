@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearDialogues | ClearForge Plugins</title>
+<meta name="description" content="ClearDialogues: Talking NPCs with lines typed out one by one, clickable chat choices that branch, reward commands, and permission or one-time locks on choices. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearDialogues</h1><p>Give your server a story. Create an NPC, write the conversation in config.yml, and players right-click to talk.</p>
+<p class="price">$6.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/cleardialogues.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/cleardialogues-cover.png" alt="ClearDialogues cover" width="1200" height="600">
+<h2>Why ClearDialogues</h2><ul><li><strong>Branching choices:</strong> clickable chat choices jump to another node, run commands with %player%, or end the conversation.</li><li><strong>No double rewards:</strong> one-time flags are saved per player, and old choice links expire once a choice is made.</li><li><strong>Simple NPCs:</strong> no AI, invulnerable, silent and never despawn. They keep working after a restart.</li></ul>
+<h2>Features</h2><ul><li>/dialogue npc create &lt;dialogueId&gt; spawns an NPC where you stand, with its name and (for villagers) profession from config</li><li>/dialogue npc remove removes the nearest one</li><li>Right-click to start the dialogue. Trading is blocked</li><li>MiniMessage lines typed out with a configurable delay</li><li>Nodes can run commands when they are shown</li><li>Per-choice permission or one-time conditions; locked choices shown greyed out or hidden</li><li>Ships with an example blacksmith conversation</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td>Talk to NPCs</td><td><code>cleardialogues.use</code> (everyone by default)</td></tr><tr><td><code>/dialogue start &lt;id&gt; [player]</code>, <code>/dialogue reload</code></td><td><code>cleardialogues.admin</code> (ops by default)</td></tr><tr><td><code>/dialogue npc create &lt;id&gt;</code>, <code>/dialogue npc remove</code></td><td><code>cleardialogues.admin</code></td></tr></table></div>
+<h2>Dependencies</h2><p>None. There is no Citizens support.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with a bot: an NPC was created, right-clicking typed out the greeting with four clickable choices, the gift choice gave 5 iron ingots, the next choice ended the conversation, the one-time choice then showed &quot;(already done)&quot; and was refused when forced, a used link said &quot;That choice has expired&quot;, the NPC and the one-time flag survived a restart, and /dialogue npc remove removed it. The permission lock was not tested with a player lacking the permission. There is no Citizens support.</p>
+<h2>Example config</h2><pre><code># ClearDialogues. Create an NPC with /dialogue npc create &lt;dialogueId&gt; where you stand.
+# Ticks between typed lines (20 ticks = 1 second).
+line-delay: 30
+# Show choices the player can&#x27;t pick (greyed out) instead of hiding them.
+show-locked-choices: true
+messages:
+  prefix: &quot;&lt;dark_gray&gt;[&lt;aqua&gt;Dialogue&lt;/aqua&gt;]&lt;/dark_gray&gt; &quot;
+  choice: &quot;  &lt;click:run_command:&#x27;&lt;command&gt;&#x27;&gt;&lt;hover:show_text:&#x27;Click to choose&#x27;&gt;&lt;aqua&gt;» &lt;text&gt;&lt;/aqua&gt;&lt;/hover&gt;&lt;/click&gt;&quot;
+  locked-choice: &quot;  &lt;dark_gray&gt;» &lt;strikethrough&gt;&lt;text&gt;&lt;/strikethrough&gt; &lt;reason&gt;&lt;/dark_gray&gt;&quot;
+  locked-permission: &quot;(locked)&quot;
+  locked-once: &quot;(already done)&quot;
+  ended: &quot;&lt;gray&gt;&lt;italic&gt;The conversation ends.&quot;
+dialogues:
+  blacksmith:
+    npc-name: &quot;&lt;gold&gt;Bram the Blacksmith&quot;
+    npc-type: VILLAGER           # any living mob type; villagers can also take a profession
+    profession: WEAPONSMITH
+    start: greet
+    nodes:
+      greet:
+        lines:
+          - &quot;&lt;gold&gt;Bram:&lt;/gold&gt; &lt;white&gt;Ah, a new face! Welcome to the forge.&quot;
+          - &quot;&lt;gold&gt;Bram:&lt;/gold&gt; &lt;white&gt;What can I do for you?&quot;
+        choices:
+          - text: &quot;Tell me about this place.&quot;
+            goto: lore
+          - text: &quot;Any free gifts for a newcomer?&quot;
+            goto: gift
+            once: blacksmith_gift      # one-time flag per player
+          - text: &quot;VIP armour, please.&quot;
+            permission: cleardialogues.vip
+            commands: [&quot;give %player% iron_chestplate 1&quot;]
+            goto: bye
+          - text: &quot;Goodbye.&quot;
+            end: true
+      lore:
+        lines:
+          - &quot;&lt;gold&gt;Bram:&lt;/gold&gt; &lt;white&gt;This forge has stood for three hundred years.&quot;
+          - &quot;&lt;gold&gt;Bram:&lt;/gold&gt; &lt;white&gt;Every sword in town was born here.&quot;
+        choices:
+          - text: &quot;Back&quot;
+            goto: greet
+          - text: &quot;Goodbye.&quot;
+            end: true
+      gift:
+        lines:
+          - &quot;&lt;gold&gt;Bram:&lt;/gold&gt; &lt;white&gt;Here, take these. Don&#x27;t tell the others!&quot;
+        commands: [&quot;give %player% iron_ingot 5&quot;]   # run when this node is shown
+        choices:
+          - text: &quot;Thanks!&quot;
+            goto: bye
+      bye:
+        lines:
+          - &quot;&lt;gold&gt;Bram:&lt;/gold&gt; &lt;white&gt;Safe travels.&quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/cleardialogues.html">ClearDialogues setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearDialogues-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearDialogues/config.yml</code> is created.</li><li>Write dialogues in the config (see the blacksmith example), then run <code>/dialogue reload</code>.</li><li>Stand where the NPC should be and run <code>/dialogue npc create &lt;dialogueId&gt;</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearDialogues &mdash; $6.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearDialogues download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/cleardialogues" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>

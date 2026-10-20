@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearBosses | ClearForge Plugins</title>
+<meta name="description" content="ClearBosses: Make your own bosses in config, with health, gear, a boss bar, health-based phases that summon minions and more, a loot table and fair damage-share rewards. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearBosses</h1><p>Your own boss fights. Pick a mob, give it health, gear and phases, and reward the players who fought it.</p>
+<p class="price">$9.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearbosses.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearbosses-cover.png" alt="ClearBosses cover" width="1200" height="600">
+<h2>Why ClearBosses</h2><ul><li><strong>Phases:</strong> at health percentages, each with a message and actions: minions, potion effects, knockback, area damage, lightning or heal.</li><li><strong>Fair rewards:</strong> reward only the top damager, or everyone who did at least a set percentage of the damage.</li><li><strong>No leftovers:</strong> bosses never despawn or burn in daylight, and bosses and minions are removed when the server stops.</li></ul>
+<h2>Features</h2><ul><li>Mob type, MiniMessage name, health, attack damage, speed, knockback resistance and equipment in config.yml</li><li>Boss bar showing the boss&#x27;s health to players within a set range</li><li>Loot table with amounts and percentage chances, plus console reward commands with %player%</li><li>/boss list with live health and location</li><li>Optional timed spawns at fixed locations</li><li>Ships with two example bosses: Zombie King and Witch Queen</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/boss spawn &lt;id&gt; [here | &lt;world&gt; &lt;x&gt; &lt;y&gt; &lt;z&gt;]</code></td><td><code>clearbosses.admin</code> (ops by default)</td></tr><tr><td><code>/boss list</code>, <code>/boss kill [id|all]</code>, <code>/boss reload</code></td><td><code>clearbosses.admin</code></td></tr></table></div><p class="muted"><code>/boss spawn &lt;id&gt;</code> alone spawns at the block you're looking at. The world and coordinates form works from the console.</p>
+<h2>Dependencies</h2><p>None.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with a bot: a 40-health test boss spawned with its boss bar, going past 50% health showed the phase message and summoned 2 minions, killing it removed the boss bar and gave 3 diamonds from the loot table and 2 gold ingots from the reward command, /boss list and /boss kill worked, and after a restart no bosses or minions were left. Timed spawns, the knockback, damage, lightning and heal actions, top-damager mode with several players, and the Witch Queen example were not bot-tested.</p>
+<h2>Example config</h2><pre><code># ClearBosses. Bosses never despawn, and all bosses and minions are removed when the server stops
+# (any left behind after a crash are removed when their chunk loads).
+broadcast-spawn: &quot;&lt;dark_red&gt;&lt;bold&gt;BOSS&lt;/bold&gt;&lt;/dark_red&gt; &lt;name&gt; &lt;red&gt;has appeared!&quot;
+broadcast-death: &quot;&lt;dark_red&gt;&lt;bold&gt;BOSS&lt;/bold&gt;&lt;/dark_red&gt; &lt;name&gt; &lt;green&gt;was slain! Top damage: &lt;gold&gt;&lt;top&gt;&lt;/gold&gt;&quot;
+bosses:
+  zombie_king:
+    type: ZOMBIE                 # any living mob type
+    name: &quot;&lt;gold&gt;&lt;bold&gt;Zombie King&quot;
+    health: 300
+    damage: 8                    # attack damage (mobs that attack)
+    speed: 0.28                  # movement speed (optional)
+    knockback-resistance: 0.8    # 0-1 (optional)
+    equipment:                   # helmet, chestplate, leggings, boots, hand, offhand
+      helmet: GOLDEN_HELMET
+      chestplate: NETHERITE_CHESTPLATE
+      hand: NETHERITE_SWORD
+    bossbar:
+      color: YELLOW              # PINK, BLUE, RED, GREEN, YELLOW, PURPLE, WHITE
+      range: 40                  # players within this many blocks see the bar
+    # Phases fire once each when health drops to or below &quot;at&quot; percent.
+    # Actions: minions &lt;TYPE&gt; &lt;count&gt; | effect &lt;EFFECT&gt; &lt;seconds&gt; &lt;level&gt; | knockback &lt;radius&gt; &lt;strength&gt;
+    #          damage &lt;radius&gt; &lt;amount&gt; | lightning &lt;radius&gt; (strikes players in radius) | heal &lt;amount&gt;
+    phases:
+      - at: 60
+        message: &quot;&lt;gold&gt;Zombie King: &lt;yellow&gt;Rise, my servants!&quot;
+        actions: [&quot;minions ZOMBIE 3&quot;]
+      - at: 30
+        message: &quot;&lt;gold&gt;Zombie King: &lt;red&gt;ENOUGH!&quot;
+        actions: [&quot;effect SPEED 30 1&quot;, &quot;knockback 6 1.5&quot;, &quot;lightning 8&quot;]
+    # Rewards. mode: top = only the top damager; share = everyone who did at least min-percent of the damage.
+    reward-mode: share
+    min-percent: 10
+    replace-drops: true          # remove the mob&#x27;s vanilla drops
+    xp: 200
+    loot:                        # rolled for each rewarded player; chance is a percentage
+      - {item: DIAMOND, amount: &quot;2-5&quot;, chance: 100}
+      - {item: NETHERITE_INGOT, amount: &quot;1&quot;, chance: 15}
+    commands:                    # run from console for each rewarded player
+      - &quot;xp add %player% 100&quot;
+  witch_queen:
+    type: WITCH
+    name: &quot;&lt;light_purple&gt;&lt;bold&gt;Witch Queen&quot;
+    health: 200
+    damage: 6
+    bossbar: {color: PURPLE, range: 40}
+    phases:
+      - at: 50
+        message: &quot;&lt;light_purple&gt;Witch Queen: &lt;gray&gt;Come, my pets.&quot;
+        actions: [&quot;minions SPIDER 2&quot;, &quot;damage 6 4&quot;]
+    reward-mode: top
+    loot:
+      - {item: EMERALD, amount: &quot;4-8&quot;, chance: 100}
+    commands: []
+# Timed spawns. Leave empty for none. A spawn is skipped while that boss is still alive there.
+timed-spawns: []
+#  - boss: zombie_king
+#    world: world
+#    x: 0
+#    y: 70
+#    z: 0
+#    every-minutes: 120
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearbosses.html">ClearBosses setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearBosses-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearBosses/config.yml</code> is created.</li><li>Add bosses under <code>bosses:</code> in the config (see the commented examples), then run <code>/boss reload</code>.</li><li>Spawn one with <code>/boss spawn &lt;id&gt;</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearBosses &mdash; $9.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearBosses download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearbosses" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
