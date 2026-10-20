@@ -9,11 +9,11 @@ def packcards(r):
         out+=f'''<div class="card pack"><img src="{r}assets/pack-{p["slug"]}-cover.png" alt="{html.escape(p["name"])} cover" width="1600" height="800">
 <h3>{html.escape(p["name"])}</h3><p>{len(p["items"])} plugins: {inc}.</p>
 <p><span class="price">${p["price"]:.2f}</span> <s class="was">${p["full"]:.2f}</s> <span class="save">Save {p["pct"]}%</span></p>
-<p><a class="btn" href="{SELL}/product/{p["slug"]}" target="_blank" rel="noopener">Buy pack with Bitcoin</a></p></div>
+<p><a class="btn" href="{SELL}/product/{p["slug"]}" target="_blank" rel="noopener">Buy pack with Bitcoin</a></p>{NOTE}</div>
 '''
     return out
 PACKSEC=f'''<section id="packs"><div class="wrap"><h2>Plugin packs</h2><p class="muted">Bundles at a lower price than buying each plugin on its own. Prices compared with the single prices on this site.</p><div class="grid">
 {packcards("")}</div><p><a class="btn alt" href="packs.html">All packs</a></p></div></section>'''
 packs_page=f'''<div class="hero"><div class="wrap"><h1>Plugin packs</h1><p>Get several ClearForge plugins together and save. Each pack is one download with every jar inside, delivered automatically after Bitcoin payment.</p></div></div>
-<section><div class="wrap"><div class="grid">
+<section><div class="wrap">{HOW}<div class="grid">
 {packcards("")}</div><p class="muted">"Save" compares the pack price with buying every plugin in it separately at current single prices. Each plugin has its own setup guide in <a href="guides/index.html">Guides</a>.</p></div></section>'''

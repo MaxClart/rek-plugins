@@ -13,7 +13,7 @@ def page(path,title,desc,body):
 <meta name="description" content="{desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
-<link rel="stylesheet" href="{r}css/style.css?v=8">
+<link rel="stylesheet" href="{r}css/style.css?v=9">
 <script src="{r}js/main.js" defer></script>
 </head>
 <body>
@@ -26,18 +26,20 @@ def page(path,title,desc,body):
 </html>
 '''
 SELL="https://clearforge.sell.app"
+NOTE='<p class="checkout-note">Checkout is Bitcoin only. No account needed: checkout as a guest.</p>'
+HOW='<div class="howbox"><h3>How checkout works</h3><ol><li>Pay in Bitcoin on Sell.app.</li><li>Once the payment confirms on the network, the download is delivered instantly to your email.</li><li>Support: use Sell.app&#39;s contact-the-seller option on your order.</li><li>All sales are final: no refunds on digital files.</li></ol></div>'
 def sell(name): return f"{SELL}/product/{name.lower()}"
 def buy(r,name="ClearCrates",price="$9.99"):
     return f'''<section id="buy"><div class="wrap"><h2>Buy {name} &mdash; {price}</h2>
 <div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your {name} download is delivered automatically as soon as the payment is confirmed.</p>
-<p><a class="btn" href="{sell(name)}" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p><a class="btn" href="{sell(name)}" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p>{NOTE}{HOW}</div>
 <p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>'''
 feat=["Spin animation (length and sound configurable, or turn it off)","Right-click a key to open, left-click to preview","In-game editor: drag items in, close to save","Item and command rewards, with a %player% placeholder","MiniMessage colours in names and messages","Full inventories: rewards drop at the player's feet, never lost","Tab completion on every command"]
 cfg=html.escape(open("/workspace/products/clearcrates/src/main/resources/config.yml").read())
 index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server owners</h1>
 <p>Lightweight, honest Paper plugins built for people who run servers. Clear configs, no bloat, real support.</p>
 <p><a class="btn" href="#plugins">Browse plugins</a> <a class="btn alt" href="guides/index.html">Setup guides</a> <a class="btn alt" href="faq.html">Server owner FAQ</a></p></div></div>
-<section id="plugins"><div class="wrap"><h2>Plugin catalogue</h2><div class="grid">
+<section id="plugins"><div class="wrap"><h2>Plugin catalogue</h2>{NOTE}{HOW}<div class="grid">
 <div class="card"><img src="assets/clearcrates-cover.png" alt="ClearCrates cover" width="1200" height="600">
 <h3>ClearCrates</h3><p>Transparent crates for Paper 1.21: exact drop chances shown, fixed preview slots and lightweight animations. No required dependencies.</p>
 <p class="price">$9.99</p><p><a class="btn" href="plugins/clearcrates.html">View plugin</a> <a class="btn alt" href="https://clearforge.sell.app/product/clearcrates" target="_blank" rel="noopener">Buy</a></p></div>
