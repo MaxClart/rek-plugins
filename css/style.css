@@ -59,3 +59,6 @@ footer::before{content:"";position:absolute;left:0;right:0;top:-1px;height:3px;b
 footer p{margin:.3em 0}
 @media(max-width:600px){nav{padding:8px 12px;flex-wrap:wrap;justify-content:center;gap:2px}nav .brand{width:100%;justify-content:center;margin:0}nav a:not(.brand){padding:7px 9px;font-size:.84rem}nav .brand{font-size:.62rem}
 .hero{padding:36px 0 22px}.grid{grid-template-columns:1fr;gap:14px}.btn{width:100%;margin:5px 0}.card{padding:16px}}
+.was{color:var(--mut);font-size:1rem;margin:0 6px}
+.save{display:inline-block;background:rgba(91,209,106,.15);color:var(--grass);border:1px solid rgba(91,209,106,.4);border-radius:999px;padding:2px 10px;font-weight:700;font-size:.85rem}
+.card.pack p a:not(.btn){color:var(--dia)}
