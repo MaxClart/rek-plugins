@@ -13,11 +13,11 @@ def page(path,title,desc,body):
 <meta name="description" content="{desc}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
-<link rel="stylesheet" href="{r}css/style.css?v=7">
+<link rel="stylesheet" href="{r}css/style.css?v=8">
 <script src="{r}js/main.js" defer></script>
 </head>
 <body>
-<header><nav><a class="brand" href="{r}index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="{r}index.html#plugins">Plugins</a><a href="{r}guides/index.html">Guides</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<header><nav><a class="brand" href="{r}index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="{r}index.html#plugins">Plugins</a><a href="{r}packs.html">Packs</a><a href="{r}guides/index.html">Guides</a><a href="{r}faq.html">FAQ</a><a href="{r}terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
 <main>
 {body}
 </main>
@@ -42,7 +42,7 @@ index=f'''<div class="hero"><div class="wrap"><h1>Plugins for Minecraft server o
 <h3>ClearCrates</h3><p>Transparent crates for Paper 1.21: exact drop chances shown, fixed preview slots and lightweight animations. No required dependencies.</p>
 <p class="price">$9.99</p><p><a class="btn" href="plugins/clearcrates.html">View plugin</a> <a class="btn alt" href="https://clearforge.sell.app/product/clearcrates" target="_blank" rel="noopener">Buy</a></p></div>
 {{NEWCARDS}}</div></div></section>
-<section id="soon"><div class="wrap"><h2>Coming soon</h2><div class="grid">
+{{PACKSEC_}}<section id="soon"><div class="wrap"><h2>Coming soon</h2><div class="grid">
 <div class="card soon"><p>More server plugins are in the works.<br>Got a request? <a href="{ISSUES}">Tell us what your server needs</a>.</p></div>
 <div class="card soon"><p>Next plugin under development&hellip;</p></div></div></div></section>'''
 fl="".join(f"<li>{html.escape(f)}</li>" for f in feat)
@@ -69,8 +69,8 @@ faq=f'''<section><div class="wrap"><h1>FAQ</h1>
 <h2>Refunds</h2><p>Plugins are digital goods, so all sales are normally final once the file has been sent. If something doesn't work on your server, open an issue first and we'll help you fix it. If we genuinely can't get it working on a supported setup, get in touch and we'll sort out a fair solution.</p>
 <h2>Server owner FAQ</h2>
 <h3>Which server software is supported?</h3><p>Every plugin runs on Paper 1.21 (tested on 1.21.4) with Java 21. Folia isn't supported yet. Spigot and Bukkit aren't tested.</p>
-<h3>Does it need other plugins?</h3><p>ClearKits, ClearDaily, ClearAFK and ClearTags have no dependencies (ClearTags works best with a permissions plugin such as LuckPerms). For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks. ClearVotes needs NuVotifier (free) to receive votes from vote sites. ClearKoth, ClearStaff, ClearChat, ClearBosses and ClearDialogues have no dependencies (ClearDialogues has no Citizens support). ClearClans needs Vault and an economy plugin only for its clan bank, and ClearSpawners only for Sell all.</p>
-<h3>How many plugins are there?</h3><p>Thirteen: ClearCrates, ClearKits, ClearDaily, ClearAFK, ClearTags, ClearVotes, ClearKoth, ClearClans, ClearStaff, ClearSpawners, ClearChat, ClearBosses and ClearDialogues.</p>
+<h3>Does it need other plugins?</h3><p>ClearKits, ClearDaily, ClearAFK and ClearTags have no dependencies (ClearTags works best with a permissions plugin such as LuckPerms). For ClearCrates, PlaceholderAPI, ItemsAdder and Nexo are optional hooks. ClearVotes needs NuVotifier (free) to receive votes from vote sites. ClearKoth, ClearStaff, ClearChat, ClearBosses and ClearDialogues have no dependencies (ClearDialogues has no Citizens support). ClearClans needs Vault and an economy plugin only for its clan bank, and ClearSpawners only for Sell all. ClearOrders and ClearAuctions need Vault and an economy plugin (e.g. EssentialsX) to run.</p>
+<h3>How many plugins are there?</h3><p>Fifteen: ClearCrates, ClearKits, ClearDaily, ClearAFK, ClearTags, ClearVotes, ClearKoth, ClearClans, ClearStaff, ClearSpawners, ClearChat, ClearBosses, ClearDialogues, ClearOrders and ClearAuctions.</p>
 <h3>Are the plugins made with AI?</h3><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p>
 <h3>Can I use it on more than one server?</h3><p>One purchase covers one server network (e.g. a proxy with its backend servers). Please don't redistribute or resell it.</p>
 <h3>How do I pay?</h3><p>With Bitcoin through Sell.app, which gives you an instant automatic download. See the Buy section on each plugin page.</p>
@@ -84,8 +84,9 @@ terms=f'''<section><div class="wrap"><h1>Terms</h1>
 <li>{BRAND} isn't affiliated with Mojang or Microsoft. Minecraft is a trademark of its respective owners.</li></ul></div></section>'''
 exec(open("plugins_extra.py").read())
 exec(open("guides.py").read())
-index=index.replace("{NEWCARDS}",NEWCARDS)
+exec(open("packs_site.py").read())
+index=index.replace("{NEWCARDS}",NEWCARDS).replace("{PACKSEC_}",PACKSEC)
 for p,t,d,b in EXTRA+GUIDES+[("index.html",f"{BRAND} | Plugins for Minecraft server owners","Paper plugins for Minecraft server owners and admins.",index),
  ("plugins/clearcrates.html",f"ClearCrates | {BRAND}","ClearCrates: transparent crates for Paper 1.21.",cc),
- ("faq.html",f"FAQ | {BRAND}","Refunds and server owner FAQ.",faq),("terms.html",f"Terms | {BRAND}","Licence and terms.",terms)]:
+ ("packs.html",f"Plugin packs | {BRAND}","Bundles of ClearForge plugins for Paper 1.21 at a lower price.",packs_page),("faq.html",f"FAQ | {BRAND}","Refunds and server owner FAQ.",faq),("terms.html",f"Terms | {BRAND}","Licence and terms.",terms)]:
     open(p,"w").write(page(p,t,d,b))
