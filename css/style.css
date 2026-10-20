@@ -62,3 +62,6 @@ footer p{margin:.3em 0}
 .was{color:var(--mut);font-size:1rem;margin:0 6px}
 .save{display:inline-block;background:rgba(91,209,106,.15);color:var(--grass);border:1px solid rgba(91,209,106,.4);border-radius:999px;padding:2px 10px;font-weight:700;font-size:.85rem}
 .card.pack p a:not(.btn){color:var(--dia)}
+.checkout-note{font-size:.88rem;color:var(--mut);margin:.4em 0}
+.howbox{background:var(--glass);border:1px solid var(--line);border-left:3px solid var(--grass);border-radius:12px;padding:10px 14px;margin:12px 0;font-size:.9rem}
+.howbox h3{font-size:.95rem;margin:0 0 .3em}.howbox ol{margin:0;padding-left:1.2em}.howbox li{margin:.15em 0;color:var(--mut)}
