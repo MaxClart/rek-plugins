@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearAuctions | ClearForge Plugins</title>
+<meta name="description" content="ClearAuctions: A clean single-server auction house: sell the item in your hand at your price, others buy with one click from a paged menu, and unsold items come back through a collection box. For Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=8">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../packs.html">Packs</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><h1>ClearAuctions</h1><p>A proper auction house. Hold an item, type /ah sell &lt;price&gt;, done. Enchanted, renamed and custom items keep their name, lore, enchantments and damage.</p>
+<p class="price">$7.99</p><p><a class="btn" href="#buy">Buy now</a> <a class="btn alt" href="../guides/clearauctions.html">Setup guide</a></p></div></div>
+<section><div class="wrap"><img src="../assets/clearauctions-cover.png" alt="ClearAuctions cover" width="1200" height="600">
+<h2>Why ClearAuctions</h2><ul><li><strong>One-click buying:</strong> a paged 54-slot menu shows each item as it really is, with seller, price and time left. Sellers are paid straight away, online or offline.</li><li><strong>Expiry and collection box:</strong> listings expire after a time you set (48 hours by default) and the item goes back to the seller's /ah collect box.</li><li><strong>Built against duplication:</strong> every click type and drag is cancelled, clicks are rate-limited and re-checked, the listing is removed and saved before money or items move, and failed payments are rolled back.</li></ul>
+<h2>Features</h2><ul><li>/ah sell &lt;price&gt; lists the whole stack in your hand</li><li>Sort by newest, lowest price, highest price or ending soon, and /ah search &lt;text&gt;</li><li>Cancel your own listing from &quot;Your listings&quot; or with /ah cancel &lt;id&gt;</li><li>Max listings per player, optional flat or percentage listing fee, optional sales tax, min and max price</li><li>Material blacklist and blocked-names list</li><li>Data saved in auctions.yml after every transaction</li><li>Switches itself off with a clear console message if no economy plugin is found</li></ul>
+<h2>Commands &amp; permissions</h2><div class="tablewrap"><table><tr><th>Command</th><th>Permission</th></tr>
+<tr><td><code>/ah</code>, <code>/ah sell &lt;price&gt;</code>, <code>/ah search &lt;text&gt;</code>, <code>/ah mine</code>, <code>/ah collect</code>, <code>/ah cancel &lt;id&gt;</code></td><td><code>clearauctions.use</code> (everyone by default)</td></tr><tr><td><code>/ah reload</code>, cancel any listing</td><td><code>clearauctions.admin</code> (ops by default)</td></tr><tr><td>Ignore the listing limit / fee</td><td><code>clearauctions.bypass.limit</code>, <code>clearauctions.bypass.fee</code> (no one by default, not even ops)</td></tr></table></div><p class="muted">Aliases: /auction, /auctions. Single server only: don't point two servers at the same auctions.yml.</p>
+<h2>Dependencies</h2><p>Vault and an economy plugin (e.g. EssentialsX) are required.</p><h2>Tested</h2><p>Tested on Paper 1.21.4 with three bots, Vault 1.7.3 and EssentialsX 2.22.0: about 100 clicks of every type plus drag packets on one listing bought it exactly once with nothing duplicated; two buyers clicking at once gave it to one and charged one; buying while the seller cancelled (three ways) let exactly one action through; an enchanted, renamed sword with lore and damage sold intact; sorting, search, the max-listings limit, the blacklist, the listing fee, blocked self-buying and cancelling from &quot;Your listings&quot; worked; a listing expired on time and came back through /ah collect; listings and the collection box survived a restart; money added up to the cent; and with no economy plugin it disabled itself with a clear message. Not tested: paging past 45 listings, the sales tax, the percentage fee, the blocked-names list, a full inventory sending a bought item to the collection box, a payment failure rollback, and economy plugins other than EssentialsX.</p>
+<h2>Example config</h2><pre><code># ClearAuctions. Needs Vault and an economy plugin (e.g. EssentialsX); without one the plugin disables itself.
+
+# Max active listings per player (clearauctions.bypass.limit ignores this).
+max-listings: 5
+# Price limits for one listing (the whole stack).
+min-price: 0.01
+max-price: 1000000
+# How long a listing stays up, in minutes (2880 = 48 hours). Unsold items go to the seller&#x27;s collection box.
+listing-duration-minutes: 2880
+# How often to check for expired listings, in seconds.
+expiry-check-seconds: 10
+# Fee taken from the seller when listing (not refunded on cancel or expiry). Flat amount plus a percent of the price.
+listing-fee: 0
+listing-fee-percent: 0
+# Percent of the sale price kept back from the seller when an item sells (0 = seller gets the full price).
+sales-tax-percent: 0
+# Milliseconds between clicks in the menu (stops click spam).
+click-cooldown-ms: 300
+# Materials that can&#x27;t be listed.
+blacklist: [BEDROCK, BARRIER, COMMAND_BLOCK, CHAIN_COMMAND_BLOCK, REPEATING_COMMAND_BLOCK, STRUCTURE_BLOCK, JIGSAW, DEBUG_STICK, LIGHT]
+# Block items whose name contains any of these words (case-insensitive). Leave empty to allow all names.
+blacklist-name-contains: []
+currency: &quot;$&quot;
+messages:
+  prefix: &quot;&lt;dark_gray&gt;[&lt;gold&gt;AH&lt;/gold&gt;]&lt;/dark_gray&gt; &quot;
+</code></pre>
+<h2>Requirements</h2><ul><li>Paper 1.21.4</li><li>Java 21</li><li>Vault and an economy plugin (e.g. EssentialsX)</li></ul>
+<h2 id="install">Installation</h2><p>Full walkthrough: <a href="../guides/clearauctions.html">ClearAuctions setup guide</a>.</p><ol><li>Stop your server.</li><li>Put <code>ClearAuctions-1.0.0.jar</code> in your <code>plugins/</code> folder.</li><li>Start the server so <code>plugins/ClearAuctions/config.yml</code> is created.</li><li>Install Vault and an economy plugin (e.g. EssentialsX) first.</li><li>Edit max listings, duration, fees, tax, price limits and the blacklist in the config, then run <code>/ah reload</code>.</li></ol>
+<h2>Support</h2><p>Bugs or questions: <a href="https://github.com/MaxClart/Clearcrates/issues">open an issue on GitHub</a>.</p>
+<h2>Licence</h2><p>One server network per purchase. No redistribution or resale. See the <a href="../terms.html">terms</a>.</p></div></section>
+<section id="buy"><div class="wrap"><h2>Buy ClearAuctions &mdash; $7.99</h2>
+<div class="card"><h3>Instant download</h3><p>Pay with Bitcoin through Sell.app and your ClearAuctions download is delivered automatically as soon as the payment is confirmed.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearauctions" target="_blank" rel="noopener">Buy now with Bitcoin, instant download</a></p></div>
+<p class="muted">Checkout is handled by Sell.app. Your download link appears on the order page and is emailed to you.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
