@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearDialogues setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearDialogues on Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=7">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearDialogues</p><h1>ClearDialogues setup guide</h1><p>Create a talking NPC with branching, clickable choices and rewards.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/cleardialogues" target="_blank" rel="noopener">Buy ClearDialogues &mdash; $6.99</a> <a class="btn alt" href="../plugins/cleardialogues.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearDialogues-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearDialogues/config.yml</code>.</p>
+
+<h2>2. Write a dialogue</h2><p>Open <code>plugins/ClearDialogues/config.yml</code> and copy the blacksmith example. Each dialogue is made of nodes with MiniMessage lines. Choices can use <code>text</code>, <code>goto &lt;node&gt;</code>, <code>commands [...]</code>, <code>end: true</code>, <code>permission &lt;perm&gt;</code> and <code>once &lt;flag&gt;</code>. Then run <code>/dialogue reload</code>.</p>
+<h2>3. Place the NPC</h2><p>Stand where it should be and run <code>/dialogue npc create blacksmith</code>. Players right-click it to talk. <code>/dialogue npc remove</code> removes the nearest one within 5 blocks. <code>/dialogue start blacksmith Steve</code> starts a dialogue without an NPC.</p>
+<h2>4. Permissions</h2><ul><li><code>cleardialogues.use</code>: talk to NPCs. Everyone by default.</li><li><code>cleardialogues.admin</code>: everything else. Ops by default.</li></ul><p>One-time flags are stored on the player, so they survive restarts.</p>
+<h2>Common questions</h2><h3>Does it work with Citizens?</h3><p>No, there is no Citizens support. ClearDialogues spawns its own simple NPCs.</p>
+<h3>What was tested?</h3><p>Creating an NPC, typed lines, clickable choices, a reward, one-time locks, expired links, restarts and NPC removal were tested with a bot on Paper 1.21.4. The permission lock was not tested with a player lacking the permission.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearDialogues is $6.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/cleardialogues" target="_blank" rel="noopener">Buy ClearDialogues</a> <a class="btn alt" href="../plugins/cleardialogues.html">ClearDialogues plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
