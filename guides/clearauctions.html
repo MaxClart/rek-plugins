@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearAuctions setup guide | ClearForge Plugins</title>
+<meta name="description" content="Step-by-step setup guide for ClearAuctions on Paper 1.21.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="../css/style.css?v=8">
+<script src="../js/main.js" defer></script>
+</head>
+<body>
+<header><nav><a class="brand" href="../index.html"><i class="cube" aria-hidden="true"></i>Clear<span>Forge</span></a><a href="../index.html#plugins">Plugins</a><a href="../packs.html">Packs</a><a href="../guides/index.html">Guides</a><a href="../faq.html">FAQ</a><a href="../terms.html">Terms</a><a href="https://clearforge.sell.app" target="_blank" rel="noopener">Full store</a></nav></header>
+<main>
+<div class="hero"><div class="wrap"><p class="muted"><a href="index.html">Guides</a> / ClearAuctions</p><h1>ClearAuctions setup guide</h1><p>Set up a single-server auction house with sort, search, expiry and a collection box.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearauctions" target="_blank" rel="noopener">Buy ClearAuctions &mdash; $7.99</a> <a class="btn alt" href="../plugins/clearauctions.html">Plugin page</a></p></div></div>
+<section><div class="wrap">
+<h2>1. Install</h2><p>Follow the <a href="getting-started.html">getting started guide</a>: put <code>ClearAuctions-1.0.0.jar</code> in <code>plugins/</code>, restart, and check the console. The config is created at <code>plugins/ClearAuctions/config.yml</code>.</p>
+
+<h2>2. Install Vault and an economy</h2><p>ClearAuctions needs Vault and an economy plugin such as EssentialsX. Without one, it disables itself and says so in the console.</p>
+<h2>3. Config</h2><p>Edit <code>plugins/ClearAuctions/config.yml</code> (max listings, duration, fees, tax, price limits, blacklist), then run <code>/ah reload</code>. Data is kept in <code>plugins/ClearAuctions/auctions.yml</code> and saved after every transaction. Single server only: don't point two servers at the same file.</p>
+<h2>4. How players use it</h2><ul><li>Hold an item and run <code>/ah sell 100</code> to list the whole stack for $100. Custom, renamed and enchanted items keep their full data.</li><li><code>/ah</code> opens the menu. Click to buy. <code>/ah search sword</code> filters, and <code>/ah mine</code> shows your listings (click to cancel).</li><li><code>/ah collect</code> gives back items from expired or cancelled listings, or bought items that didn't fit.</li><li><code>/ah cancel &lt;id&gt;</code> cancels a listing. Admins can cancel any, and the item goes back to the seller.</li></ul><p>Aliases: <code>/auction</code>, <code>/auctions</code>.</p>
+<h2>5. Permissions</h2><ul><li><code>clearauctions.use</code>: everyone by default.</li><li><code>clearauctions.admin</code>: reload and cancel any listing. Ops by default.</li><li><code>clearauctions.bypass.limit</code> and <code>clearauctions.bypass.fee</code>: no one by default, not even ops.</li></ul>
+<h2>Common questions</h2><h3>What was tested?</h3><p>Duplication attempts with every click type, simultaneous buyers, buying while cancelling, enchanted items, sorting, search, limits, blacklist, listing fee, expiry, collection box, restarts and the no-economy shutdown were tested with three bots on Paper 1.21.4 with Vault and EssentialsX. Not tested: paging past 45 listings, the sales tax, the percentage fee, the blocked-names list, a full inventory sending a bought item to the collection box, a payment failure rollback, and economy plugins other than EssentialsX.</p>
+<h2>Ready to go?</h2><div class="card"><p>ClearAuctions is $7.99. Pay with Bitcoin and the download arrives automatically.</p>
+<p><a class="btn" href="https://clearforge.sell.app/product/clearauctions" target="_blank" rel="noopener">Buy ClearAuctions</a> <a class="btn alt" href="../plugins/clearauctions.html">ClearAuctions plugin page</a> <a class="btn alt" href="getting-started.html">Getting started</a></p></div>
+<p class="muted">Stuck? <a href="https://github.com/MaxClart/Clearcrates/issues">Open an issue on GitHub</a>.</p></div></section>
+</main>
+<footer><div class="wrap"><p>&copy; 2026 ClearForge Plugins. Made for Minecraft server owners and admins.</p><p>ClearForge plugins are built with AI assistance and tested on a real Paper 1.21 server.</p><p>Not affiliated with Mojang or Microsoft.</p></div></footer>
+</body>
+</html>
