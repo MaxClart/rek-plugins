@@ -65,3 +65,7 @@ footer p{margin:.3em 0}
 .checkout-note{font-size:.88rem;color:var(--mut);margin:.4em 0}
 .howbox{background:var(--glass);border:1px solid var(--line);border-left:3px solid var(--grass);border-radius:12px;padding:10px 14px;margin:12px 0;font-size:.9rem}
 .howbox h3{font-size:.95rem;margin:0 0 .3em}.howbox ol{margin:0;padding-left:1.2em}.howbox li{margin:.15em 0;color:var(--mut)}
+
+.badge{display:inline-block;background:rgba(91,209,106,.15);color:var(--grass);border:1px solid rgba(91,209,106,.4);border-radius:4px;padding:2px 8px;font-size:.8rem;font-weight:700;margin:.2em 0 .4em}
+.support-note{font-size:.85rem;color:var(--muted,#9aa)}
+.packstrip{margin:1em 0;padding:.7em 1em;border:1px solid rgba(255,200,60,.4);background:rgba(255,200,60,.08);border-radius:6px}
