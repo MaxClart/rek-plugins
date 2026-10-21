@@ -69,3 +69,6 @@ footer p{margin:.3em 0}
 .badge{display:inline-block;background:rgba(91,209,106,.15);color:var(--grass);border:1px solid rgba(91,209,106,.4);border-radius:4px;padding:2px 8px;font-size:.8rem;font-weight:700;margin:.2em 0 .4em}
 .support-note{font-size:.85rem;color:var(--muted,#9aa)}
 .packstrip{margin:1em 0;padding:.7em 1em;border:1px solid rgba(255,200,60,.4);background:rgba(255,200,60,.08);border-radius:6px}
+.sale-banner{background:#1d2a1a;border-bottom:2px solid var(--grass);color:#e8f5e4;text-align:center;font-size:.9rem;padding:.45em 1em}
+.sale-banner strong{color:var(--gold)}
+.sale-banner span{opacity:.85;margin-left:.4em}
